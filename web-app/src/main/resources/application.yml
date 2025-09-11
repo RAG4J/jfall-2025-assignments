@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: default
+  application:
+    name: agent-workshop-assignments
+
+
+openai:
+  proxy:
+#    url: https://vfjv12h3xb.execute-api.eu-west-1.amazonaws.com
+    url:
+    token:
+
+logging:
+  level:
+    root: INFO
+    org.rag4j.agent: INFO
+    org.springframework.ai: INFO
+
+
+agent:
+  plain:
+    reasoning:
+      max-reasoning-steps: 5
+    memory:
+      max-conversation-size: 10

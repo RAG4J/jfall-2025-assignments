@@ -1,0 +1,32 @@
+/* Minimal CSS for Evals Manager - Bootstrap first approach */
+
+/* Text truncation utility for table cells */
+.text-truncate-custom {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive text truncation */
+@media (max-width: 768px) {
+    .text-truncate-custom {
+        max-width: 150px;
+    }
+}
+
+/* Extra large modal */
+.modal-dialog-xl {
+    max-width: 90%;
+}
+
+/* Minimal footer styling to stick to bottom */
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+/* Ensure proper word wrapping in modal content */
+#detailContent {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

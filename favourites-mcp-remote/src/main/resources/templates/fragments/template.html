@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Default Title</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+<!--    <style type="text/css">-->
+<!--        main > .container {padding-top: 60px}-->
+<!--    </style>-->
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark navbar-fixed-bar bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/}">Favourites Manager</a>
+            <span class="navbar-text text-light me-3" th:if="${activeProfile}" th:text="'[' + ${activeProfile} + ']'" style="font-size: 0.9em; opacity: 0.8;"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/favourites}">View Favourites</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/favourites/add}">Add Favourite</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<footer class="footer mt-auto py-3 bg-body-tertiary">
+    <div class="container">
+        <p>&copy; 2025 Rag4j.org, Inc. All rights reserved.</p>
+        <ul class="list-unstyled d-flex">
+            <li class="ms-3">
+                <a class="link-dark" href="https://github.com/rag4j/agentic-workshop.git" target="_blank" rel="noopener">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+<div th:fragment="scripts">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+</div>
+
+</body>
+</html>

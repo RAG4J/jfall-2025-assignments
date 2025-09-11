@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:replace="~{fragments/template :: head('Edit Run')}" />
+<body class="bg-light d-flex flex-column min-vh-100">
+    <header th:replace="~{fragments/template :: header}"></header>
+    
+    <main class="container py-4 flex-grow-1">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title mb-0">
+                            <i class="fas fa-edit me-2"></i>
+                            Edit Evaluation Run
+                        </h2>
+                        <div class="text-muted mt-1">
+                            <small>Run ID: <code th:text="${run.id}">run-id</code></small>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!-- Alerts -->
+                        <div th:replace="~{fragments/template :: alerts}"></div>
+                        
+                        <!-- Current Status Info -->
+                        <div class="alert alert-info" th:if="${run.status != null}">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Current Status:</strong> 
+                            <span th:class="${run.statusBadgeClass}" th:text="${run.status}">CREATED</span>
+                            <span th:if="${run.totalRecords > 0}" class="ms-3">
+                                Progress: <span th:text="${run.completedRecords}">0</span>/<span th:text="${run.totalRecords}">0</span> 
+                                (<span th:text="${#numbers.formatDecimal(run.completionPercentage, 1, 1)}">0.0</span>%)
+                            </span>
+                        </div>
+                        
+                        <!-- Warning for running runs -->
+                        <div class="alert alert-warning" th:if="${run.status != null && run.status.name() == 'RUNNING'}">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Warning:</strong> This run is currently executing. Some changes may not take effect until the next execution.
+                        </div>
+                        
+                        <form th:action="@{'/runs/' + ${run.id} + '/edit'}" method="post" th:object="${run}">
+                            <!-- Basic Information -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h5 class="text-primary">
+                                        <i class="fas fa-info-circle me-2"></i>
+                                        Basic Information
+                                    </h5>
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Run Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" th:field="*{name}" 
+                                           placeholder="e.g., GPT-4 Baseline Test" required>
+                                    <div class="form-text">Give your evaluation run a descriptive name</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="status" class="form-label">Status</label>
+                                    <select class="form-select" id="status" th:field="*{status}">
+                                        <option value="CREATED">Created</option>
+                                        <option value="RUNNING">Running</option>
+                                        <option value="COMPLETED">Completed</option>
+                                        <option value="FAILED">Failed</option>
+                                        <option value="CANCELLED">Cancelled</option>
+                                    </select>
+                                    <div class="form-text">Current status of the evaluation run</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control" id="description" th:field="*{description}" 
+                                              rows="3" placeholder="Describe the purpose and scope of this evaluation run..."></textarea>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="totalRecords" class="form-label">Total Records</label>
+                                    <input type="number" class="form-control" id="totalRecords" th:field="*{totalRecords}" 
+                                           min="0">
+                                    <div class="form-text">Total number of records for evaluation</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="completedRecords" class="form-label">Completed Records</label>
+                                    <input type="number" class="form-control" id="completedRecords" th:field="*{completedRecords}" 
+                                           min="0">
+                                    <div class="form-text">Number of records that have been completed</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Configuration Section -->
+                            <div class="row mb-4 mt-5">
+                                <div class="col-12">
+                                    <h5 class="text-primary">
+                                        <i class="fas fa-cogs me-2"></i>
+                                        Configuration
+                                    </h5>
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="modelName" class="form-label">Model Name</label>
+                                    <select class="form-select" id="modelName" th:field="${configuration.modelName}">
+                                        <option value="">Select a model</option>
+                                        <option value="gpt-4-turbo-preview">GPT-4 Turbo Preview</option>
+                                        <option value="gpt-4">GPT-4</option>
+                                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                                        <option value="claude-3-opus">Claude 3 Opus</option>
+                                        <option value="claude-3-sonnet">Claude 3 Sonnet</option>
+                                        <option value="claude-3-haiku">Claude 3 Haiku</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="outputFormat" class="form-label">Output Format</label>
+                                    <select class="form-select" id="outputFormat" th:field="${configuration.outputFormat}">
+                                        <option value="json">JSON</option>
+                                        <option value="csv">CSV</option>
+                                        <option value="xml">XML</option>
+                                        <option value="text">Plain Text</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label for="temperature" class="form-label">Temperature</label>
+                                    <input type="number" class="form-control" id="temperature" th:field="${configuration.temperature}" 
+                                           step="0.1" min="0" max="2">
+                                    <div class="form-text">0.0 = deterministic, 2.0 = very random</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="maxTokens" class="form-label">Max Tokens</label>
+                                    <input type="number" class="form-control" id="maxTokens" th:field="${configuration.maxTokens}" 
+                                           min="1" max="4096">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="batchSize" class="form-label">Batch Size</label>
+                                    <input type="number" class="form-control" id="batchSize" th:field="${configuration.batchSize}" 
+                                           min="1" max="100">
+                                    <div class="form-text">Number of requests to process at once</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <label for="inputDataSource" class="form-label">Input Data Source</label>
+                                    <input type="text" class="form-control" id="inputDataSource" th:field="${configuration.inputDataSource}" 
+                                           placeholder="e.g., /path/to/input/data.json or dataset-name">
+                                    <div class="form-text">Path to input data file or dataset identifier</div>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <label for="evaluationPrompt" class="form-label">Evaluation Prompt</label>
+                                    <textarea class="form-control" id="evaluationPrompt" th:field="${configuration.evaluationPrompt}" 
+                                              rows="4" placeholder="Enter the system prompt for evaluation..."></textarea>
+                                    <div class="form-text">System prompt used for AI evaluation</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Timestamps -->
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <h5 class="text-primary">
+                                        <i class="fas fa-clock me-2"></i>
+                                        Timestamps
+                                    </h5>
+                                    <hr>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Created At</label>
+                                    <input type="text" class="form-control" 
+                                           th:value="${run.createdAt != null ? #temporals.format(run.createdAt, 'yyyy-MM-dd HH:mm:ss') : 'Not set'}" 
+                                           readonly>
+                                </div>
+                                <div class="col-md-6" th:if="${run.completedAt != null}">
+                                    <label class="form-label">Completed At</label>
+                                    <input type="text" class="form-control" 
+                                           th:value="${run.completedAt != null ? #temporals.format(run.completedAt, 'yyyy-MM-dd HH:mm:ss') : 'Not completed yet'}" 
+                                           readonly>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="d-flex justify-content-between flex-wrap gap-2">
+                                <div>
+                                    <a th:href="@{'/runs/' + ${run.id}}" class="btn btn-outline-secondary">
+                                        <i class="fas fa-arrow-left me-1"></i>Back to Details
+                                    </a>
+                                    <a th:href="@{/runs}" class="btn btn-outline-secondary">
+                                        <i class="fas fa-list me-1"></i>All Runs
+                                    </a>
+                                </div>
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-save me-1"></i>Update Run
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Help Card -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h6 class="card-title mb-0">
+                            <i class="fas fa-question-circle me-2"></i>
+                            Editing Tips
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Configuration Changes:</h6>
+                                <ul class="small text-muted">
+                                    <li><strong>Model:</strong> Changing the model will apply to future executions</li>
+                                    <li><strong>Temperature:</strong> Affects randomness of model responses</li>
+                                    <li><strong>Tokens:</strong> Controls maximum response length</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Status Management:</h6>
+                                <ul class="small text-muted">
+                                    <li><strong>Running:</strong> Use carefully - may interfere with active execution</li>
+                                    <li><strong>Cancelled:</strong> Stops current execution if running</li>
+                                    <li><strong>Failed/Completed:</strong> Final states that can be changed if needed</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="alert alert-warning mt-3 mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <small><strong>Note:</strong> Changes to configuration will only affect future executions. Currently running processes use the original configuration.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer th:replace="~{fragments/template :: footer}"></footer>
+    <div th:replace="~{fragments/template :: scripts}"></div>
+    
+    <script>
+        // Form validation and enhancements
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-update completion percentage when values change
+            const totalInput = document.getElementById('totalRecords');
+            const completedInput = document.getElementById('completedRecords');
+            
+            function updateCompletionDisplay() {
+                const total = parseInt(totalInput.value) || 0;
+                const completed = parseInt(completedInput.value) || 0;
+                
+                // Ensure completed doesn't exceed total
+                if (completed > total && total > 0) {
+                    completedInput.value = total;
+                    showWarning('Completed records cannot exceed total records');
+                }
+                
+                // Visual feedback for completion status
+                if (total > 0) {
+                    const percentage = Math.round((completed / total) * 100);
+                    updateProgressDisplay(percentage);
+                }
+            }
+            
+            function updateProgressDisplay(percentage) {
+                // This could update a progress bar or status indicator
+                console.log(`Progress: ${percentage}%`);
+            }
+            
+            function showWarning(message) {
+                // Simple alert for now - could be enhanced with toast notifications
+                const existingAlert = document.querySelector('.alert-warning.auto-generated');
+                if (existingAlert) {
+                    existingAlert.remove();
+                }
+                
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-warning auto-generated alert-dismissible fade show mt-2';
+                alertDiv.innerHTML = `
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                `;
+                
+                const form = document.querySelector('form');
+                form.parentNode.insertBefore(alertDiv, form);
+            }
+            
+            totalInput.addEventListener('change', updateCompletionDisplay);
+            completedInput.addEventListener('change', updateCompletionDisplay);
+            
+            // Temperature slider visual feedback
+            const tempInput = document.getElementById('temperature');
+            if (tempInput) {
+                tempInput.addEventListener('input', function() {
+                    const value = parseFloat(this.value) || 0;
+                    let description = '';
+                    if (value <= 0.3) description = 'Very Conservative';
+                    else if (value <= 0.7) description = 'Balanced';
+                    else if (value <= 1.2) description = 'Creative';
+                    else description = 'Very Creative';
+                    
+                    // Update help text
+                    const helpText = this.nextElementSibling;
+                    if (helpText && helpText.classList.contains('form-text')) {
+                        helpText.textContent = `${description} (${value}) - 0.0 = deterministic, 2.0 = very random`;
+                    }
+                });
+                
+                // Trigger initial update
+                tempInput.dispatchEvent(new Event('input'));
+            }
+            
+            // Status change warning
+            const statusSelect = document.getElementById('status');
+            if (statusSelect) {
+                const originalStatus = statusSelect.value;
+                statusSelect.addEventListener('change', function() {
+                    const newStatus = this.value;
+                    if (originalStatus === 'RUNNING' && newStatus !== 'RUNNING') {
+                        if (!confirm('Changing status from RUNNING may affect the current execution. Are you sure you want to continue?')) {
+                            this.value = originalStatus;
+                        }
+                    }
+                });
+            }
+            
+            // Form submission confirmation for critical changes
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const status = document.getElementById('status').value;
+                    if (status === 'CANCELLED' || status === 'FAILED') {
+                        if (!confirm(`Are you sure you want to set the status to ${status}? This action may stop ongoing processes.`)) {
+                            e.preventDefault();
+                            return false;
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

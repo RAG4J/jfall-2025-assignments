@@ -1,0 +1,7 @@
+**/target/*
+.idea
+favourites-mcp/data
+data/
+**/logs/
+**/.DS_Store
+WARP.md

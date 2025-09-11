@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:replace="~{fragments/template :: head('Chat Page')}"><title>is replaced</title></head>
+<body class="bg-light">
+<header th:replace="~{fragments/template :: header}"></header>
+<main>
+    <div class="container py-5">
+        <div class="card shadow mx-auto" style="max-width: 600px;">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">Simple Chat</h1>
+                <form th:action="@{/chat}" method="post" class="d-flex flex-column gap-2">
+                    <div class="mb-3">
+                        <label for="userId" class="form-label">User ID:</label>
+                        <input type="text" id="userId" name="userId" class="form-control" placeholder="Enter your user ID" th:value="${userId}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Enter the message for your Agent:</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Type your message..." required rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Send</button>
+                </form>
+                <div th:if="${confirmation}" class="alert alert-success confirmation mt-3">
+                    <p th:text="${confirmation}" class="mb-0"></p>
+                </div>
+                <div th:if="${error}" class="alert alert-danger error mt-3">
+                    <p th:text="${error}" class="mb-0"></p>
+                </div>
+                <div th:if="${response}" class="alert alert-info response mt-3">
+                    <div th:each="msg : ${response.messages}">
+                        <strong th:text="${msg.sender.displayName()} + ':'"></strong>
+                        <span th:text="${msg.content}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/template :: footer}"></footer>
+<div th:replace="~{fragments/template :: scripts}"></div>
+</body>
+</html>

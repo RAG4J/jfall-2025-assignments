@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:replace="~{fragments/template :: head('Favourites Manager - View Favourites')}"><title>is replaced</title></head>
+<body class="bg-light">
+<header th:replace="~{fragments/template :: header}"></header>
+<main>
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h1 class="mb-4" th:text="${showingAllUsers} ? 'All Favourite Talks' : 'My Favourite Talks'">My Favourite Talks</h1>
+
+                <!-- Success/Error Messages -->
+                <div th:if="${successMessage}" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>
+                    <span th:text="${successMessage}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                
+                <div th:if="${errorMessage}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    <span th:text="${errorMessage}"></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+
+                <!-- User ID and Filter Form -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <form method="get" th:action="@{/favourites}" class="row g-3">
+                            <div class="col-md-4">
+                                <label for="userId" class="form-label">User ID</label>
+                                <input type="text" class="form-control" id="userId" name="userId" th:value="${userId}" placeholder="Leave empty to see all users">
+                                <div class="form-text">Leave empty to show all users' favourites</div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="speakerFilter" class="form-label">Speaker Filter</label>
+                                <input type="text" class="form-control" id="speakerFilter" name="speakerFilter" th:value="${speakerFilter}" placeholder="Filter by speaker name">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">&nbsp;</label>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-filter me-1"></i>Filter
+                                    </button>
+                                    <a th:href="@{/favourites}" class="btn btn-outline-secondary">
+                                        <i class="fas fa-times me-1"></i>Clear
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Favourites List -->
+                <div th:if="${favourites.isEmpty()}" class="text-center py-5">
+                    <i class="fas fa-heart fa-3x text-muted mb-3"></i>
+                    <h3 class="text-muted">No favourites found</h3>
+                    <p class="text-muted mb-4" th:if="${speakerFilter != null and !speakerFilter.isEmpty()}">
+                        No favourites found for speaker filter: "<span th:text="${speakerFilter}"></span>"
+                    </p>
+                    <p class="text-muted mb-4" th:unless="${speakerFilter != null and !speakerFilter.isEmpty()}">
+                        <span th:if="${showingAllUsers}">No favourites found for any users.</span>
+                        <span th:unless="${showingAllUsers}">You haven't added any favourite talks yet.</span>
+                    </p>
+                    <a th:href="@{/favourites/add}" class="btn btn-primary">
+                        <i class="fas fa-plus me-2"></i>Add Your First Favourite
+                    </a>
+                </div>
+
+                <div th:unless="${favourites.isEmpty()}">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">
+                            Found <span th:text="${favourites.size()}"></span> favourite(s)
+                            <span th:if="${showingAllUsers}" th:text="' across all users'"></span>
+                            <span th:if="${speakerFilter != null and !speakerFilter.isEmpty()}" th:text="' for speaker: &quot;' + ${speakerFilter} + '&quot;'"></span>
+                        </span>
+                        <a th:href="@{/favourites/add}" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus me-1"></i>Add New
+                        </a>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3" th:each="favourite : ${favourites}">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title" th:text="${favourite.title}">Talk Title</h5>
+                                    <div class="mb-2" th:if="${showingAllUsers}">
+                                        <small class="text-muted">User: </small>
+                                        <span class="badge bg-primary" th:text="${favourite.userId}">User</span>
+                                    </div>
+                                    <div class="mb-2">
+                                        <small class="text-muted">Speakers:</small>
+                                    </div>
+                                    <div class="mb-3">
+                                        <span th:each="speaker, iterStat : ${favourite.speakers}" 
+                                              class="badge bg-secondary me-1 mb-1" 
+                                              th:text="${speaker}">Speaker</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/template :: footer}"></footer>
+<div th:replace="~{fragments/template :: scripts}"></div>
+</body>
+</html>

@@ -1,0 +1,76 @@
+spring:
+  profiles:
+    active:
+    default: springai
+
+  application:
+    name: evals-web-app
+
+  # Thymeleaf configuration
+  thymeleaf:
+    cache: false # Disable cache for development
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+
+  # Jackson configuration for JSON handling
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zone: UTC
+
+  # Web configuration
+  web:
+    resources:
+      static-locations: classpath:/static/
+      cache:
+        period: 0 # Disable caching for development
+  ai:
+    openai:
+      project-id: workshop
+      api-key: ${openai.proxy.token}
+
+openai:
+  proxy:
+    url:
+    token:
+
+
+# Custom application properties
+evals:
+  data:
+    directory: ${user.dir}/data # Directory for storing evaluation data files
+  questions:
+    filename: input-questions.json # Filename for input questions (within data directory)
+
+# Server configuration
+server:
+  port: 8081
+  servlet:
+    context-path: /
+
+# Logging configuration
+logging:
+  level:
+    org.rag4j.evals: INFO
+    org.springframework.web: INFO
+    org.thymeleaf: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Actuator configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Info endpoint configuration
+info:
+  app:
+    name: Evals Manager
+    description: Web application for managing AI evaluation records
+    version: 1.0.0

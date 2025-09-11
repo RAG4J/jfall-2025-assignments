@@ -1,0 +1,31 @@
+server:
+  port: 9000
+  servlet:
+    session:
+      tracking-modes: cookie
+  forward-headers-strategy: framework
+
+spring:
+  application:
+    name: favourites-auth-server
+  # OAuth2 configuration is handled by Java @Configuration classes
+
+# Logging configuration
+logging:
+  level:
+    org.springframework.security: INFO
+    org.springframework.web: INFO
+    org.springframework.boot.autoconfigure: INFO
+    org.springframework.boot.web.servlet.error: INFO
+    org.springframework.web.filter.CommonsRequestLoggingFilter: INFO
+    org.rag4j: DEBUG
+
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+# Management endpoints (for health checks and monitoring)
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

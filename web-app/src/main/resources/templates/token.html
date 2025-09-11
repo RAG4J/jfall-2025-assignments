@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:replace="~{fragments/template :: head('Token Page')}"><title>is replaced</title></head>
+<body class="bg-light">
+<header th:replace="~{fragments/template :: header}"></header>
+<main>
+    <!-- Header include -->
+<div class="container py-5">
+    <div class="card shadow mx-auto" style="max-width: 800px;">
+        <div class="card-body">
+            <h1 class="card-title text-center mb-4">Token Management</h1>
+            
+            <!-- Current Token Status -->
+            <div th:if="${tokenValidation}" class="mb-4">
+                <h5>Current Token Status</h5>
+                <div th:if="${tokenValidation.valid}" class="alert alert-success">
+                    <strong>✅ Token is Valid</strong><br>
+                    <span th:text="'User: ' + ${tokenValidation.user}"></span><br>
+                    <span th:text="'Description: ' + ${tokenValidation.description}"></span><br>
+                    <span th:text="'Minutes remaining: ' + ${tokenValidation.minutesRemaining}"></span><br>
+                    <span th:text="'Expires at: ' + ${tokenValidation.expiresAtIso}"></span>
+                </div>
+                <div th:unless="${tokenValidation.valid}" class="alert alert-warning">
+                    <strong>⚠️ Token is Invalid or Expired</strong><br>
+                    <span th:text="${tokenValidation.errorMessage}" th:if="${tokenValidation.errorMessage}"></span>
+                </div>
+            </div>
+            
+            <!-- Status Messages -->
+            <div th:if="${success}" class="alert alert-success">
+                <p th:text="${success}" class="mb-0"></p>
+            </div>
+            <div th:if="${warning}" class="alert alert-warning">
+                <p th:text="${warning}" class="mb-0"></p>
+            </div>
+            <div th:if="${info}" class="alert alert-info">
+                <p th:text="${info}" class="mb-0"></p>
+            </div>
+            <div th:if="${error}" class="alert alert-danger">
+                <p th:text="${error}" class="mb-0"></p>
+                <div th:if="${configurationError}" class="mt-2">
+                    <hr class="my-2">
+                    <small class="text-muted">
+                        <strong>Resolution Steps:</strong><br>
+                        <span th:text="${configErrorDetails}"></span>
+                    </small>
+                </div>
+            </div>
+            
+            <!-- Token Request Form -->
+            <h5>Request New Token</h5>
+            <p>You can obtain a token here for the OpenAI service. You still need to add it to the application.yml file and restart the application</p>
+            <form th:action="@{/token}" method="post" class="d-flex flex-column gap-3">
+                <div class="mb-3">
+                    <label for="userId" class="form-label">User ID for token:</label>
+                    <input type="text" id="userId" name="userId" class="form-control" placeholder="Enter your user ID" th:value="${userId}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password:</label>
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Enter workshop password" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Request Token</button>
+            </form>
+            
+            <!-- Token Result -->
+            <div th:if="${confirmation}" class="alert alert-success mt-4">
+                <p th:text="${confirmation}" class="mb-2"></p>
+                <div th:if="${tokenInfo}" class="mt-2">
+                    <small class="text-muted">Token expires in <span th:text="${tokenInfo.expiresInMinutes}"></span> minutes</small>
+                </div>
+            </div>
+            <div th:if="${obtainedToken}" class="mt-3">
+                <h6>Generated Token:</h6>
+                <div class="bg-light p-3 border rounded position-relative">
+                    <pre class="mb-0" style="white-space: pre-wrap; word-break: break-all;"><code th:text="${obtainedToken}"></code></pre>
+                    <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2" onclick="copyToClipboard()">
+                        📋 Copy
+                    </button>
+                </div>
+                <small class="text-muted">Copy this token to your application.yml file under openai.proxy.token</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function copyToClipboard() {
+    const tokenText = document.querySelector('pre code').textContent;
+    navigator.clipboard.writeText(tokenText).then(function() {
+        // Show temporary success message
+        const button = event.target;
+        const originalText = button.innerHTML;
+        button.innerHTML = '✅ Copied!';
+        button.classList.remove('btn-outline-secondary');
+        button.classList.add('btn-success');
+        
+        setTimeout(function() {
+            button.innerHTML = originalText;
+            button.classList.remove('btn-success');
+            button.classList.add('btn-outline-secondary');
+        }, 2000);
+    }, function(err) {
+        console.error('Could not copy text: ', err);
+        alert('Failed to copy to clipboard');
+    });
+}
+</script>
+</main>
+<footer th:replace="~{fragments/template :: footer}"></footer>
+<div th:replace="~{fragments/template :: scripts}"></div>
+</body>
+</html>

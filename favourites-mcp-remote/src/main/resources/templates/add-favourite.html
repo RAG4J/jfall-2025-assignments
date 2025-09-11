@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:replace="~{fragments/template :: head('Favourites Manager - Add Favourite')}"><title>is replaced</title></head>
+<body class="bg-light">
+<header th:replace="~{fragments/template :: header}"></header>
+<main>
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h1 class="card-title text-center mb-4">Add Favourite Talk</h1>
+                        
+                        <form th:action="@{/favourites/add}" method="post" th:object="${favouriteTalk}">
+                            
+                            <div class="mb-3">
+                                <label for="title" class="form-label">
+                                    <i class="fas fa-microphone me-2"></i>Talk Title *
+                                </label>
+                                <input type="text" class="form-control" id="title" th:field="*{title}" 
+                                       placeholder="Enter the talk title" required>
+                                <div class="form-text">Enter the name or title of the talk you want to add to favourites.</div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="speakers" class="form-label">
+                                    <i class="fas fa-users me-2"></i>Speakers *
+                                </label>
+                                <input type="text" class="form-control" id="speakers" th:field="*{speakers}" 
+                                       placeholder="e.g., John Doe, Jane Smith" required>
+                                <div class="form-text">Enter speaker names separated by commas. For example: "John Doe, Jane Smith"</div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="userId" class="form-label">
+                                    <i class="fas fa-user me-2"></i>User ID *
+                                </label>
+                                <input type="text" class="form-control" id="userId" th:field="*{userId}" 
+                                       placeholder="Enter user ID" required>
+                                <div class="form-text">Enter the user ID for whom this favourite will be saved.</div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="#" onclick="goBackToFavourites()" class="btn btn-outline-secondary me-md-2">
+                                    <i class="fas fa-arrow-left me-1"></i>Back to Favourites
+                                </a>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-heart me-1"></i>Add Favourite
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <hr class="my-4">
+                        
+                        <div class="alert alert-info" role="alert">
+                            <i class="fas fa-lightbulb me-2"></i>
+                            <strong>Tip:</strong> You can add multiple speakers by separating their names with commas. 
+                            The system will automatically handle the formatting.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/template :: footer}"></footer>
+<div th:replace="~{fragments/template :: scripts}"></div>
+<script>
+function goBackToFavourites() {
+    const userId = document.getElementById('userId').value;
+    if (userId && userId.trim() !== '') {
+        window.location.href = '/favourites?userId=' + encodeURIComponent(userId.trim());
+    } else {
+        window.location.href = '/favourites';
+    }
+}
+</script>
+</body>
+</html>

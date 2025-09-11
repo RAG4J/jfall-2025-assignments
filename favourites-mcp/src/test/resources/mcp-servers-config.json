@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "location": {
+      "command": "java",
+      "args": [
+        "-Dspring.ai.mcp.server.stdio=true",
+        "-jar",
+        "/Users/jettrocoenradie/Development/personal/agent4j/agent-workshop-assignments/favourites-mcp/target/favourites-mcp-0.0.1-SNAPSHOT.jar"
+      ]
+    }
+  }
+}

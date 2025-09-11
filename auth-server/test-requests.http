@@ -1,0 +1,139 @@
+# OAuth2 Authorization Server Test Requests
+Based on actual AuthorizationServerConfig.java configuration
+
+###
+# 1. Get OpenID Connect Discovery Document
+GET http://auth-server:9000/.well-known/openid-configuration
+Accept: application/json
+
+###
+# 2. Get JWK Set (Public Keys for JWT verification)
+GET http://auth-server:9000/oauth2/jwks
+Accept: application/json
+
+###
+# 3. Client Credentials Flow - Get Access Token for MCP Client
+# ✅ THIS WORKS - favourites-mcp client configured for server-to-server auth
+POST http://auth-server:9000/oauth2/token
+Authorization: Basic ZmF2b3VyaXRlcy1tY3A6bWNwLXNlY3JldA==
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&scope=mcp.invoke
+
+###
+# 4. Authorization Code Flow - Step 1: Get Authorization Code  
+# ✅ THIS SHOULD WORK - favourites-web client IS configured for authorization code flow!
+# 
+# According to AuthorizationServerConfig.java:
+# - favourites-web supports: authorization_code, refresh_token
+# - Scopes: openid, profile, email, favourites.read, favourites.write
+# - Redirect URIs: http://localhost:8080/login/oauth2/code/favourites, http://localhost:8080/authorized
+#
+# BROWSER FLOW:
+# 1. Open this URL in your BROWSER (not HTTP client)
+# 2. Login with: user/password or admin/admin
+# 3. Get redirected to: http://localhost:8080/authorized?code=SOME_CODE&state=xyz123
+# 4. Copy the code value and use it in Step 5
+#
+GET http://localhost:9000/oauth2/authorize?response_type=code&client_id=favourites-web&redirect_uri=http://localhost:8080/authorized&scope=openid%20profile%20favourites.read&state=xyz123
+
+
+###
+# 5. Authorization Code Flow - Step 2: Exchange Code for Token
+# ✅ THIS SHOULD WORK - Using correct favourites-web client credentials!
+# 
+# AFTER Step 4 browser login, you get redirected to:
+# http://localhost:8080/authorized?code=abc123def456&state=xyz123
+# 
+# Copy the code value (abc123def456) and replace AUTHORIZATION_CODE_HERE below:
+#
+POST http://localhost:9000/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ZmF2b3VyaXRlcy13ZWI6d2ViLXNlY3JldA==
+
+grant_type=authorization_code&code=AUTHORIZATION_CODE_HERE&redirect_uri=http://localhost:8080/authorized
+
+###
+# 6. Token Introspection - Check if token is valid
+# ✅ WORKS with both clients - Replace 'ACCESS_TOKEN_HERE' with actual access token
+POST http://localhost:9000/oauth2/introspect
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ZmF2b3VyaXRlcy13ZWI6d2ViLXNlY3JldA==
+
+token=ACCESS_TOKEN_HERE
+
+###
+# 6a. Token Introspection - Using MCP client credentials
+POST http://localhost:9000/oauth2/introspect
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ZmF2b3VyaXRlcy1tY3A6bWNwLXNlY3JldA==
+
+token=ACCESS_TOKEN_HERE
+
+###
+# 7. Refresh Token Request
+# ✅ THIS WORKS - favourites-web client supports refresh tokens!
+POST http://localhost:9000/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ZmF2b3VyaXRlcy13ZWI6d2ViLXNlY3JldA==
+
+grant_type=refresh_token&refresh_token=REFRESH_TOKEN_HERE
+
+###
+# 8. Token Revocation
+# ✅ WORKS with both clients - Replace 'TOKEN_TO_REVOKE' with access/refresh token
+POST http://localhost:9000/oauth2/revoke
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic ZmF2b3VyaXRlcy13ZWI6d2ViLXNlY3JldA==
+
+token=TOKEN_TO_REVOKE
+
+###
+# 9. User Info Endpoint (OIDC) - Get user profile
+# ✅ THIS WORKS - Use token from favourites-web with 'openid' scope
+GET http://localhost:9000/userinfo
+Authorization: Bearer ACCESS_TOKEN_HERE
+Accept: application/json
+
+###
+# 10. Health Check (Note: This endpoint is protected by Spring Security)
+# Will redirect to login page - use OpenID Connect discovery instead
+GET http://localhost:9000/actuator/health
+Accept: application/json
+
+###
+# 10a. Alternative Health Check (Public endpoint)
+# ✅ THIS WORKS - Use for health checks instead
+GET http://auth-server:9000/.well-known/openid-configuration
+Accept: application/json
+
+###
+# Demo Users (for browser login):
+# Username: user,     Password: password
+# Username: admin,    Password: admin  
+
+###
+# Client Credentials (Base64 encoded):
+# ACTUAL CONFIGURED CLIENTS (from AuthorizationServerConfig.java):
+#
+# favourites-web:web-secret           -> ZmF2b3VyaXRlcy13ZWI6d2ViLXNlY3JldA==
+# favourites-mcp:mcp-secret           -> ZmF2b3VyaXRlcy1tY3A6bWNwLXNlY3JldA==
+
+###
+# SUMMARY - All Tests Should Work Now!
+# ✅ ALL STEPS work with the actual configuration:
+# 
+# favourites-web client configuration:
+# - Grant Types: authorization_code, refresh_token
+# - Scopes: openid, profile, email, favourites.read, favourites.write
+# - Redirect URIs: http://localhost:8080/login/oauth2/code/favourites, http://localhost:8080/authorized
+# - Token TTL: 1 hour access, 7 days refresh
+# 
+# favourites-mcp client configuration:
+# - Grant Types: client_credentials
+# - Scopes: mcp.invoke
+# - Token TTL: 1 hour access
+#
+# Demo Users:
+# - Username: user, Password: password (Role: USER)
+# - Username: admin, Password: admin (Roles: USER, ADMIN)

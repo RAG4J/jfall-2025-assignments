@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:replace="~{fragments/template :: head('Home Page')}"><title>is replaced</title></head>
+<body class="bg-light">
+<header th:replace="~{fragments/template :: header}"></header>
+<main>
+    <!-- Header include -->
+    <div class="container py-5">
+        <div class="card shadow mx-auto" style="max-width: 600px;">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">Home</h1>
+                <p>A simple application to demonstrate you agentic work. These are the different parts of the
+                    application.</p>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item">
+                        <a href="#" th:href="@{/token}" class="text-decoration-none">Token</a> - Retreive a token for
+                        the OpenAI service.
+                    </li>
+                    <li class="list-group-item">
+                        <a href="#" th:href="@{/chat}" class="text-decoration-none">Chat</a> - Talk to you agent.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/template :: footer}"></footer>
+<div th:replace="~{fragments/template :: scripts}"></div>
+</body>
+</html>

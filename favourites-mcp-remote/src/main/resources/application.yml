@@ -1,0 +1,38 @@
+spring:
+  ai:
+    mcp:
+      server:
+        name: favourites-mcp-sse
+        version: 1.0.0
+        type: SYNC
+        instructions: "This server manages user favourite items and can add, remove, and list favourites."
+        capabilities:
+            tool: true
+            resource: false
+            prompt: false
+            completion: false
+
+  main:
+    banner-mode: console
+    web-application-type: servlet
+  web:
+    resources:
+      static-locations:
+        - classpath:/META-INF/resources/
+        - classpath:/resources/
+        - classpath:/static/
+        - classpath:/public/
+      add-mappings: true
+  mvc:
+    static-path-pattern: /**
+
+server:
+  port: 8081
+
+logging:
+  level:
+    org.rag4j: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+    org.springframework.boot.autoconfigure.security: INFO
+    root: INFO

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:replace="~{fragments/template :: head('Evals Manager - Home')}" />
+<body class="bg-light d-flex flex-column min-vh-100">
+    <header th:replace="~{fragments/template :: header}"></header>
+    
+    <main class="container py-5 flex-grow-1">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <div class="text-center mb-5">
+                            <h1 class="card-title display-4 mb-3">
+                                <i class="fas fa-chart-line text-primary me-3"></i>
+                                Evals Manager
+                            </h1>
+                            <p class="lead text-muted">
+                                Comprehensive evaluation management for AI systems with human-in-the-loop scoring
+                            </p>
+                        </div>
+                        
+                        <div class="row g-4">
+                            <!-- Evaluations Card -->
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3">
+                                            <i class="fas fa-table fa-3x text-primary"></i>
+                                        </div>
+                                        <h5 class="card-title">View Evaluations</h5>
+                                        <p class="card-text text-muted">
+                                            Browse and manage evaluation records with detailed input/output analysis, 
+                                            LLM scores, and human scoring capabilities.
+                                        </p>
+                                        <a href="#" th:href="@{/evaluations}" class="btn btn-primary">
+                                            <i class="fas fa-arrow-right me-1"></i>
+                                            View Records
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Runs Card -->
+                            <div class="col-md-6">
+                                <div class="card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center">
+                                        <div class="mb-3">
+                                            <i class="fas fa-play-circle fa-3x text-success"></i>
+                                        </div>
+                                        <h5 class="card-title">Manage Runs</h5>
+                                        <p class="card-text text-muted">
+                                            Create, configure, and monitor evaluation runs with customizable 
+                                            settings for different AI models and evaluation criteria.
+                                        </p>
+                                        <a href="#" th:href="@{/runs}" class="btn btn-success">
+                                            <i class="fas fa-list me-1"></i>
+                                            View Runs
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Features Section -->
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <h3 class="text-center mb-4">Key Features</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="row g-4">
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-robot fa-2x text-info mb-3"></i>
+                                    <h6>LLM Scoring</h6>
+                                    <small class="text-muted">
+                                        Automated evaluation with AI-generated scores and detailed reasoning
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-user-check fa-2x text-warning mb-3"></i>
+                                    <h6>Human Validation</h6>
+                                    <small class="text-muted">
+                                        Human-in-the-loop scoring with detailed reasoning and validation
+                                    </small>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="text-center">
+                                    <i class="fas fa-eye fa-2x text-secondary mb-3"></i>
+                                    <h6>Detailed Views</h6>
+                                    <small class="text-muted">
+                                        Interactive modals and detailed views for comprehensive analysis
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Actions -->
+                        <div class="row mt-5">
+                            <div class="col-12">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <i class="fas fa-rocket me-2"></i>
+                                            Quick Start
+                                        </h5>
+                                        <p class="card-text">Get started with evaluation management:</p>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <a href="#" th:href="@{/runs/new}" class="btn btn-outline-primary btn-sm">
+                                                <i class="fas fa-plus me-1"></i>Create New Run
+                                            </a>
+                                            <a href="#" th:href="@{/evaluations}" class="btn btn-outline-secondary btn-sm">
+                                                <i class="fas fa-table me-1"></i>View All Records
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer th:replace="~{fragments/template :: footer}"></footer>
+    <div th:replace="~{fragments/template :: scripts}"></div>
+</body>
+</html>

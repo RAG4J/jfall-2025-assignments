@@ -1,0 +1,1941 @@
+[
+  {
+    "title": "30 minutes to understand MCP (Model Context Protocol)",
+    "description": "This session demystifies the Model Context Protocol (MCP), an open standard for integrating LLMs with external data and tools. Through live coding wit...",
+    "speakers": [
+      "Sébastien Blanc"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "30 Years of Java - How Did We Get Here?",
+    "description": "This session offers a concise history of Java’s evolution from its 1995 launch to its ongoing popularity, highlighting key milestones and personal ane...",
+    "speakers": [
+      "Simon Ritter"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "A Developer's Search for Meaning: Thriving as AI Transforms Our World",
+    "description": "This presentation examines how Java developers adapt their professional identity as AI agents take over coding tasks. Blending occupational science an...",
+    "speakers": [
+      "Markus Westergren",
+      "Elma Westergren"
+    ],
+    "track": "People & Culture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "A Long Spring: 19 Years of Living with Your Past Mistakes",
+    "description": "This talk shares insights from 19 years of evolving the Spring Java framework, covering technical and community challenges, responsible innovation, an...",
+    "speakers": [
+      "Arjen Poutsma"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "A2A in 30 Minutes: Building Interoperable AI Agents",
+    "description": "This talk introduces the A2A protocol, an open standard enabling AI agents to discover, communicate, and collaborate across systems. It covers A2A’s c...",
+    "speakers": [
+      "Loïc Magnette"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Accelerating Maven Builds: From Snail's Pace 🐌 to Rocket Speed 🚀",
+    "description": "Are you tired of watching Maven builds crawl at a snail's pace, wasting precious development time? Spending too much time at the coffee machine, or fi...",
+    "speakers": [
+      "Maarten Mulders"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Accessibility; beyond the tools",
+    "description": "This talk highlights the importance of building a culture of accessibility in response to the European Accessibility Act, emphasizing that true digita...",
+    "speakers": [
+      "Lucien Immink"
+    ],
+    "track": "People & Culture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Agentic AI Patterns",
+    "description": "This talk explores emerging patterns in Agentic AI system architectures—workflows and agents—highlighting their differences, challenges in testing, an...",
+    "speakers": [
+      "Mario Fusco",
+      "Kevin Dubois"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Agentic GraphRAG: AI’s Logical Edge",
+    "description": "This talk demonstrates how combining RAG and GraphRAG retrieval models in agent architectures enhances AI’s ability to solve complex, domain-specific...",
+    "speakers": [
+      "Stephen Chin"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "AI Agents, the New Frontier for LLMs",
+    "description": "This session introduces intelligent agents as the next evolution for LLMs, covering agent definitions, limitations, and key patterns. Attendees will i...",
+    "speakers": [
+      "Guillaume Laforge"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "AI-Powered Form Wizards: Chat, Click, Done",
+    "description": "This talk explores building an AI-powered form-filling assistant using LangChain4j, Quarkus, and Java libraries. It covers challenges like input valid...",
+    "speakers": [
+      "Loïc Magnette"
+    ],
+    "track": "Build Different",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Amazon Q Developer: Your AI Pair Programmer for Java Modernization and Development",
+    "description": "This session introduces Amazon Q Developer’s AI-powered tools for Java, featuring conversational coding, automated migration to Java 21, real-time sec...",
+    "speakers": [
+      "Pal Magnus Slatto"
+    ],
+    "track": "Build Different",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Application Architecture for Real-World Continuous Delivery",
+    "description": "This talk outlines essential architectural patterns—disposability, statelessness, externalized observability, minimal dependencies, and integrated dat...",
+    "speakers": [
+      "Christopher Batey"
+    ],
+    "track": "Architecture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Architecture as Code: Quantifying Architectural Trade-offs",
+    "description": "This session introduces \"architecture as code,\" enabling architects to define and verify alignment between architecture and implementation using code....",
+    "speakers": [
+      "Neal Ford"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Augmented Development, the successes, surprises and pitfalls",
+    "description": "This talk covers the development of FastDecimal, a performance-optimized alternative to BigDecimal for financial calculations, using Long and AI agent...",
+    "speakers": [
+      "Andy Bailey"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Authorization in Spring Security: permissions, roles and beyond",
+    "description": "This talk explores advanced authorization in Spring Security, covering user data handling, policy decision and enforcement phases, and practical imple...",
+    "speakers": [
+      "Daniel Garnier-Moiroux"
+    ],
+    "track": "Security",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Backlog.md - Reaching 95 % Task success rate with AI Agents",
+    "description": "This talk traces the journey from initial struggles with AI coding assistants to mastering effective workflows using Backlog.md. It shares best practi...",
+    "speakers": [
+      "Alex Gavrilescu"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Be more productive with IntelliJ IDEA",
+    "description": "IntelliJ IDEA is designed to help developers stay in the flow while working. It has a powerful editor, refactorings, navigation, and all kinds of smar...",
+    "speakers": [
+      "Marit van Dijk"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Behavioral Software Engineering",
+    "description": "This talk explores how cognitive biases, as identified by behavioral economics, influence decision-making in software engineering. It examines heurist...",
+    "speakers": [
+      "Mario Fusco"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Bootiful GraalVM",
+    "description": "It's that time of the year gain! Devoxx time! And we love being here. But you know which place we love even more? Production. And we don't know anythi...",
+    "speakers": [
+      "Josh Long",
+      "Thomas Wuerthinger"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Bootiful Spring AI",
+    "description": "The age of artificial intelligence (because the search for regular intelligence hasn't gone well..) is nearly at hand, and it's everywhere! But is it...",
+    "speakers": [
+      "Josh Long",
+      "Christian Tzolov"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Bootiful Spring Boot",
+    "description": "This talk explores exciting new features and opportunities for Spring Boot developers in 2025, highlighting advancements in Spring Boot 4 and Spring F...",
+    "speakers": [
+      "Josh Long"
+    ],
+    "track": "Server Side Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Bootiful Spring Boot: the Deep-Dive",
+    "description": "This workshop provides a comprehensive overview of Spring, covering its core component model, Spring Boot, and practical applications in batch process...",
+    "speakers": [
+      "Josh Long"
+    ],
+    "track": "Server Side Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Bootiful Spring Boot",
+    "description": "This talk explores exciting new features and opportunities for Spring Boot developers in 2025, highlighting advancements in Spring Boot 4 and Spring F...",
+    "speakers": [
+      "Josh Long"
+    ],
+    "track": "Server Side Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Braving the Change: Recalibrating to new realities",
+    "description": "‘Change is the only constant in our industry’… but they never told us it would go this fast. With the recent evolutions in AI, ‘change’ has shifted fr...",
+    "speakers": [
+      "Tom Cools"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Breaking Down AI Silos: Building Interoperable Multi-Agent Systems with Google's A2A Protocol and Java SDK",
+    "description": "Google’s Agent2Agent (A2A) protocol, now under the Linux Foundation, solves AI agent interoperability by providing a universal communication standard....",
+    "speakers": [
+      "Stefano Maestri"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Breaking your testing habits",
+    "description": "This interactive workshop helps developers modernize their testing practices by moving away from outdated patterns and libraries like JUnit 3/4/5, Ham...",
+    "speakers": [
+      "Rick Ossendrijver",
+      "Tim te Beek"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Brokk: an AI-Native Code Platform for Java, in Java",
+    "description": "Brokk is a Java Swing tool for supervising code-writing AI assistants, designed for context engineering beyond traditional IDEs. This talk covers Brok...",
+    "speakers": [
+      "Jonathan Ellis"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Build an MCP Server with Java",
+    "description": "This session demonstrates building an MCP (Model Context Protocol) Server in Java from scratch and with frameworks like Spring Boot, Micronaut, and Qu...",
+    "speakers": [
+      "Sergio  del Amo Caballero"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Build your AI assistant with Ollama, LLM and Spring",
+    "description": "This advanced hands-on lab teaches developers to integrate local LLMs via Ollama API into a Spring application, enabling dynamic, AI-powered responses...",
+    "speakers": [
+      "Ivan St. Ivanov",
+      "Valentin Vasilev"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Build your own Java-powered Agentic Apps",
+    "description": "This session demonstrates building Java-based Agentic AI applications using Quarkus and LangChain4j. It covers creating LLM clients, adding agentic fe...",
+    "speakers": [
+      "Georgios Andrianakis",
+      "Mario Fusco"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Build your own keyboard from A to Z(erty)",
+    "description": "This talk explores building a custom ergonomic keyboard from scratch, focusing on electronics, microcontrollers, firmware, and design, inspired by the...",
+    "speakers": [
+      "Bruce Bujon"
+    ],
+    "track": "Mind the geek",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Building an AI agent with Structured Outputs, Function Calling, and MCP",
+    "description": "This session covers building AI agents by enabling structured outputs from LLMs using JSON schemas, invoking Java functions through function calling,...",
+    "speakers": [
+      "Julien Dubois"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Building Private, Scalable AI Applications with Self-Hosted LLMs",
+    "description": "This tutorial teaches how to build and deploy secure, self-hosted AI applications using Java and Spring AI with local LLMs on Kubernetes. It covers in...",
+    "speakers": [
+      "Timo Salm",
+      "Sandra Ahlgrimm"
+    ],
+    "track": "Architecture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Building secure AI agents with Quarkus LangChain4j",
+    "description": "This hands-on workshop teaches participants to build and secure AI agents using Quarkus LangChain4j. Attendees will set up projects, implement securit...",
+    "speakers": [
+      "Willem Jan Glerum",
+      "Radek Kargul"
+    ],
+    "track": "Security",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Building your AI agent with Agent Development Kit (ADK) and Postgres",
+    "description": "This workshop guides developers in building a conversational AI agent using Agent Development Kit (ADK) and Postgres with pgvector. Participants learn...",
+    "speakers": [
+      "Miguel Toscano",
+      "Ahmad Adel"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Code, burnout and depression: an engineering perspective of mental health in IT",
+    "description": "This talk shares a personal journey through burnout and depression in software engineering, highlighting the profession's significant mental health ri...",
+    "speakers": [
+      "Manuel Bernhardt"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Code Review Remarks: Lessons Learned",
+    "description": "This talk offers practical advice for tech leads on effective code review, covering technical strategies based on PR size and complexity, and emphasiz...",
+    "speakers": [
+      "Blagoj Jovanov"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Coding challenge: AI-test vs PI-test",
+    "description": "This session evaluates the effectiveness of AI-generated tests using mutation testing and the PI-Test framework, examining whether high coverage equat...",
+    "speakers": [
+      "Frederieke Scheper",
+      "Laurens van der Kooi"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Coding, Rewritten: What 10.000+ AI-Generated Code Completions Taught Me About the Future of Software Development",
+    "description": "This talk explores the transformative impact of AI coding tools on developer workflows, sharing insights from using over 30 AI agents. It covers how A...",
+    "speakers": [
+      "Jeroen Egelmeers"
+    ],
+    "track": "Build Different",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Compose and Dragons",
+    "description": "This session demonstrates building an RPG universe with autonomous AI agents, each in its own Docker container. Using Docker tools and Model Context P...",
+    "speakers": [
+      "Guillaume Lours",
+      "Philippe Charrière"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Cryptography in a post-quantum world: why our encryption now has a use-by date, and what we need to do about it.",
+    "description": "This talk examines the looming threat quantum computers pose to current encryption, detailing their codebreaking power, projected timelines for breaki...",
+    "speakers": [
+      "Jules May"
+    ],
+    "track": "Security",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Deep Dive: GraalVM in Practice",
+    "description": "This session offers a deep dive into building production-ready native Java applications with GraalVM, covering migration, library configuration, perfo...",
+    "speakers": [
+      "Alina Yurenko"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Delay the AI Overlords: How OAuth and OpenFGA Can Keep Your AI Agents from Going Rogue",
+    "description": "This talk addresses securing AI agents against unauthorized actions and data leaks, focusing on OAuth2, OpenFGA, and fine-grained authorization. Atten...",
+    "speakers": [
+      "Deepu Sasidharan"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Developing an Asynchronous Application with Virtual Threads and Structured Concurrency",
+    "description": "One of the most exciting features delivered by JDK 21 are Virtual Threads, developed by the Loom project. They promise to enable the \"simple thread-pe...",
+    "speakers": [
+      "Ana-Maria Mihalceanu",
+      "José Paumard"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "DevOps: State of the Union (One Decade Later)",
+    "description": "This interactive session discusses what DevOps in 2025 really is. We explore why and how to leverage DevOps, and relate it to other concepts, e.g. SRE...",
+    "speakers": [
+      "Michael Hüttermann"
+    ],
+    "track": "Development Practices",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Discover the Agent Development Kit for Java for building AI agents",
+    "description": "This presentation introduces Google's Agent Development Kit (ADK) for building AI agents in Java. It covers agent capabilities, tool integration, mult...",
+    "speakers": [
+      "Guillaume Laforge"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Docker Compose your Dev Toolkit for AI and Cloud workflows",
+    "description": "This live demo showcases new Docker Compose features for the AI era, including the models attribute and provider services, enabling easy integration o...",
+    "speakers": [
+      "Guillaume Lours"
+    ],
+    "track": "Development Practices",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Enable Digital sovereignty by tech stack liquidity",
+    "description": "Digital sovereignty is key for modern organizations to build resilience against political and economic disruptions. To achieve real sovereignty, organ...",
+    "speakers": [
+      "Merlin Bögershausen"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Evolution of Java Code Execution",
+    "description": "This talk explores the evolution of managed execution in the JVM, its changing role in the cloud era, and emerging innovations like build-time optimiz...",
+    "speakers": [
+      "Ben Evans"
+    ],
+    "track": "Server Side Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Extending Functional Pipeline with Gatherers",
+    "description": "We've had the ability to extend the terminal operation of a functional pipeline from the day one, thanks to the Collectors interface and the collect m...",
+    "speakers": [
+      "Venkat Subramaniam"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Fast-Track JDK Tools for the Modern Software Developer",
+    "description": "This hands-on lab explores new JDK tools, including the Java Launcher, javadoc with Markdown, jwebserver for testing, jlink for custom runtime images,...",
+    "speakers": [
+      "Ana-Maria Mihalceanu",
+      "José Paumard"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Finally, final means final - A deep dive into field immutability in Java",
+    "description": "This talk explores Java's 'final' keyword, its limitations in ensuring immutability, and how JVM assumptions can impact performance. It covers recent...",
+    "speakers": [
+      "Per Minborg"
+    ],
+    "track": "Java",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Fixing time zones for fun - twenty programming puzzles to master internationalization.",
+    "description": "This talk reviews 20 internationalization puzzles on i18n-puzzles.com, tackling advanced time zone and Unicode challenges. It analyzes diverse solutio...",
+    "speakers": [
+      "Martijn van Iersel"
+    ],
+    "track": "Mind the geek",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "From AI-Infused to Agentic: Building an Enterprise Agentic Framework",
+    "description": "This talk traces the evolution from simple LLM wrappers to advanced agentic frameworks, highlighting challenges in memory, context, and interoperabili...",
+    "speakers": [
+      "Georgios Andrianakis",
+      "Mario Fusco"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "From LLM orchestration to autonomous agents: Agentic AI patterns with LangChain4j",
+    "description": "This session explores designing autonomous AI agents using LangChain4j, a Java-native framework. It covers architecture, key patterns, and practical i...",
+    "speakers": [
+      "Georgios Andrianakis",
+      "Mario Fusco"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "From OpenAI to Opensource AI: Navigating Between Commercial Ownership and Collaborative Openness",
+    "description": "This presentation analyzes the evolution of generative AI, comparing openness among models like GPT-4 and LLaMA, and examining the interplay between c...",
+    "speakers": [
+      "Raphaël Semeteys"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "From Scratch to Scalable: Building Smarter AI Agents with Frameworks",
+    "description": "This workshop guides Java developers from manually building a basic AI agent with LLM integration and conversational memory to transforming it into a...",
+    "speakers": [
+      "Jettro Coenradie",
+      "Daniël Spee"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "From Space to Code: Using NASA's Open Data APIs with Kepler",
+    "description": "This talk explores NASA’s open APIs, featuring data on astronomy, Mars, exoplanets, and Earth observation. It demonstrates building educational, inspi...",
+    "speakers": [
+      "Ko Turk"
+    ],
+    "track": "Mind the geek",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "From Sticky Notes to Strategic Boundaries: Real-World EventStorming at the Port of Rotterdam",
+    "description": "This talk shares practical lessons from using EventStorming to modernize architecture in the Port of Rotterdam. Attendees will learn real-world approa...",
+    "speakers": [
+      "Mario Klaver"
+    ],
+    "track": "Development Practices",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "From the comfort of AWS to the unknown of GCP (and Back?!)",
+    "description": "This session shares real-world lessons from migrating a well-architected AWS-based microservices platform to GCP. It covers unexpected challenges in r...",
+    "speakers": [
+      "Natalie Godec",
+      "Endy Kasanardjo"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "From Vulnerability to Victory: Mastering the CVE Lifecycle for Java Developers",
+    "description": "This session provides Java developers with a comprehensive understanding of the CVE lifecycle, including how vulnerabilities are discovered, scored, a...",
+    "speakers": [
+      "Anthony Dahanne"
+    ],
+    "track": "Security",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Garbage Collection in Java: Choosing the Correct Collector",
+    "description": "Garbage collection (GC) is a type of automatic memory management and a key feature of the Java platform. It allows developers to focus on their applic...",
+    "speakers": [
+      "Stefan Johansson"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Gemini CLI in Action",
+    "description": "This session demonstrates practical, repeatable workflows using Gemini CLI for codebase querying, editing, and automation. Through live demos, it cove...",
+    "speakers": [
+      "Wietse Venema"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Generative AI: tech du-jour or the next big thing?",
+    "description": "Is generative AI a fundamental improvement in our day-by-day? Or is it just the cool tech trend which shall pass? Are generative AI assistants useful?...",
+    "speakers": [
+      "Massimo Re Ferre'"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Getting started with speaking",
+    "description": "Have you wondered what it takes to be a successful speaker? Where to start, which topic to pick, and how to deliver? You'll find answers to these ques...",
+    "speakers": [
+      "Bert Jan Schrijver"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Going serverless with Quarkus, GraalVM native images and AWS Lambda",
+    "description": "This talk details migrating the NLJUG conference app backend from Java Spring on Linux VMs to a serverless architecture using Quarkus, GraalVM native...",
+    "speakers": [
+      "Bert Jan Schrijver"
+    ],
+    "track": "Server Side Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Google’s Code Review Secrets: Lessons Learned Over Decades",
+    "description": "This talk shares Google’s code review best practices, focusing on balancing code quality, speed, collaboration, and knowledge sharing. It explores str...",
+    "speakers": [
+      "Artie Shevchenko"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "GPULlama3.java: Beyond CPU Inference with Modern Java",
+    "description": "This session introduces GPULlama3.java, an open-source framework enabling efficient, GPU-accelerated inference for Llama and similar models directly i...",
+    "speakers": [
+      "Michalis Papadimitriou"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "GraalVM Community BOF",
+    "description": "GraalVM thrives thanks to its awesome users and early adopters who follow the improvements and give valuable feedback.We will share details about majo...",
+    "speakers": [
+      "Thomas Wuerthinger",
+      "Fabio Niephaus"
+    ],
+    "track": "Java",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "GraalVM meets WebAssembly",
+    "description": "This talk introduces GraalVM’s Web Image for compiling Java to efficient WebAssembly (Wasm) modules and demonstrates use cases and limitations. It als...",
+    "speakers": [
+      "Fabio Niephaus"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Hands-on: Backlog.md - Plan Tasks with AI",
+    "description": "Backlog.md is a lightweight, Git-native CLI tool for managing project tasks offline using Markdown files. Designed for solo developers and small teams...",
+    "speakers": [
+      "Alex Gavrilescu"
+    ],
+    "track": "Build Different",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Hands-On: Building Agents with Spring AI, MCP, Java, and Amazon Bedrock",
+    "description": "In this hands-on workshop you will learn how to build & deploy production-ready AI Agents. You will use Spring AI, MCP, Java, and Amazon Bedrock and l...",
+    "speakers": [
+      "Josh Long",
+      "James Ward"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Hands-On: Building AI Agents with Embabel",
+    "description": "In this hands-on lab you will build an AI Agent using the Embabel Agent Framework and Kotlin or Java (you pick). The Agent will use Amazon Bedrock and...",
+    "speakers": [
+      "John Davies",
+      "James Ward"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Hands-on refactoring session with the CodeLaser MCP server",
+    "description": "This session demonstrates AI-guided, deterministic refactoring with the CodeLaser MCP Server, covering installation, codebase analysis, architectural...",
+    "speakers": [
+      "Piet van Remortel",
+      "Bart Naudts"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "How browsers REALLY load Web pages",
+    "description": "This talk explores how browsers prioritize and load web page resources, covering factors like resource hints, loading modifiers, and HTTP/2/3 connecti...",
+    "speakers": [
+      "Robin Marx"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "How I Solved Production Issues with OpenTelemetry (And How You Can Too)",
+    "description": "This session demonstrates how OpenTelemetry enhances Java application reliability by uncovering hidden production issues through real-time observabili...",
+    "speakers": [
+      "Cees Bos"
+    ],
+    "track": "Development Practices",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "How package encapsulation with Spring Modulith simplified our code",
+    "description": "This talk explores the challenges of understanding large codebases and proposes refactoring from horizontal to vertical package structures. It demonst...",
+    "speakers": [
+      "Jos Roseboom"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "How to build your own fun and absurd pair programmer",
+    "description": "This session explores building a playful, sarcastic AI assistant using LLMs, Spring Boot, and vector databases. Attendees will learn about Retrieval-A...",
+    "speakers": [
+      "Alexander Chatzizacharias"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "How we scaled Continuous Delivery across 1000s of Developers and 100s of applications",
+    "description": "This talk presents a scalable, contract-based approach to standardizing software delivery pipelines, fostering alignment across development, operation...",
+    "speakers": [
+      "Christopher Batey"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "I Lost Weight on Kubernetes with **SlimFaas**",
+    "description": "SlimFaas is an open-source, ultra-lightweight Function-as-a-Service platform for Kubernetes, featuring scale-to-zero, job management, and simple integ...",
+    "speakers": [
+      "Guillaume CHERVET"
+    ],
+    "track": "Architecture",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Integrating OpenAPI Generator into CERN React Apps: Pitfalls and Best Practices from the Frontlines",
+    "description": "This talk presents CERN’s open source React library that optimizes integration of OpenAPI Generator clients using a custom hook, addressing common iss...",
+    "speakers": [
+      "Stefano Marzo"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Java 21 to 25 - Better Language, Better APIs, Better Runtime",
+    "description": "Java 25, the next long-term support release, introduces numerous enhancements across language features, APIs, and runtime—from unnamed patterns and fl...",
+    "speakers": [
+      "Nicolai Parlog"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Java Adventures - JTaccuino, Java 25 and AI",
+    "description": "A demo packed session awaits you showing you the latest Java 25 features using JTacccuino notebooks.JTaccuino is a pure Java and JavaFX notebook solut...",
+    "speakers": [
+      "Sven Reimers"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Java and JVM lovers in Belgium, let's unite!",
+    "description": "Are you passionate about Java and curious to meet the people shaping its community here in Belgium? Whether you’re a first-time Devoxx attendee, a sea...",
+    "speakers": [
+      "Loïc Magnette",
+      "Tom Cools"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Java as an AI development Platform",
+    "description": "This talk highlights Java’s growing capabilities for AI development, emphasizing innovations like Project Panama and the Vector API. It covers modern...",
+    "speakers": [
+      "Zoran Sevarac"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Java for AI",
+    "description": "Many Java features, existing and future, can meet the demands of AI. Existing features include the Foreign Function and Memory API and the Vector API....",
+    "speakers": [
+      "Paul Sandoz"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Java Memory Leaks",
+    "description": "This talk explores memory leaks and inefficiency in Java backend systems, covering the Java Memory Model, essential JVM memory flags, and heapdump ana...",
+    "speakers": [
+      "Victor Rentea"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Java Performance Update 2025: From JDK 21 to JDK 25",
+    "description": "This talk reviews 13 key performance improvements from JDK 21 to JDK 25, including enhancements in libraries, the JIT compiler, and garbage collectors...",
+    "speakers": [
+      "Per Minborg"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Joda-Beans, POJO code generation and beyond",
+    "description": "Joda-Beans is the Joda project you've never heard of. An alternative to Lombok or Immutables, using an inline code generation approach closer to a lan...",
+    "speakers": [
+      "Stephen Colebourne"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "LangChain4j Community BOF",
+    "description": "Curious about the evolution and future direction of LangChain4j? Join our Birds of a Feather (BOF) session for an open and interactive discussion with...",
+    "speakers": [
+      "Dimitris Andreadis",
+      "Mario Fusco"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Large Scale Distributed LLM Inference with LLM-D and Kubernetes",
+    "description": "This session introduces LLM-D, a Kubernetes-based distributed framework for scalable, cost-efficient LLM inference. Addressing challenges like acceler...",
+    "speakers": [
+      "Abdel Sghiouar"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Live Coding The Hive: a modularization strategy for your modular monolith or microservices",
+    "description": "The text highlights the pitfalls of poorly designed microservices, advocating for modular monoliths as an alternative. It introduces the Hive architec...",
+    "speakers": [
+      "Julien Topçu",
+      "Thomas PIERRAIN"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Local Development in the AI Era",
+    "description": "This session explores how to maintain local, network-optional development in the age of AI. Topics include running AI models locally, using local code...",
+    "speakers": [
+      "Kevin Dubois",
+      "Roberto Carratalá"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Loom in JDK 25: Virtual Threads, Structured Concurrency, and Scoped Values",
+    "description": "This presentation explores Project Loom's enhancements in Java: lightweight virtual threads, the finalized Scoped Value API, and improved Structured C...",
+    "speakers": [
+      "José Paumard",
+      "Remi Forax"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Love Letter to Legacy",
+    "description": "This talk argues that maintaining and modernizing legacy codebases is a highly skilled and rewarding job, often more challenging and vital than new fe...",
+    "speakers": [
+      "Gerald Benischke"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Making significant Software Architecture decisions",
+    "description": "Software architecture represents the significant design decisions that shape a system, where significant is measured by the cost of change. At its cor...",
+    "speakers": [
+      "Bert Jan Schrijver"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "MCP in the Wild: Real-Time Agentic Systems with Live A/B Testing",
+    "description": "This session introduces the Multi-Context Protocol (MCP) for modular, real-time AI agent interaction in games using Python, CrewAI, and FastAPI. Atten...",
+    "speakers": [
+      "Arun Gupta"
+    ],
+    "track": "Architecture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Meta-Programming with Agentic AI: Unleashing the Power of Code Reflection",
+    "description": "This talk explores integrating meta-programming with agentic AI to create adaptable language features, showcasing live examples and new Java capabilit...",
+    "speakers": [
+      "Michael Hoffer"
+    ],
+    "track": "Java",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Modern Java Puzzlers",
+    "description": "This session explores Java’s rapid evolution since JDK 9, focusing on new features like records, switch expressions, sealed classes, and pattern match...",
+    "speakers": [
+      "Simon Ritter"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Modernizing your Java codebase with AI",
+    "description": "This workshop provides hands-on guidance for modernizing Java applications at scale, focusing on migrating from Java 8 to 21, framework updates, and a...",
+    "speakers": [
+      "Kevin Azijn",
+      "Vinicius Senger"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Not just code. (Ab)using Claude Code to do just about anything but coding",
+    "description": "This talk explores creative, practical uses of Claude Code as a terminal-based assistant for DevOps tasks beyond coding, such as infrastructure setup,...",
+    "speakers": [
+      "Barry van Someren"
+    ],
+    "track": "Build Different",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "On standards and AI agents: a walkthrough of MCP, A2A, ADK and more",
+    "description": "This deep dive explores key protocols and frameworks essential for building AI agents, including MCP, A2A, ACP, ADK, Arc, Quarkus, and LangChain4j. At...",
+    "speakers": [
+      "Guillaume Laforge",
+      "Mete Atamel"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "ONNX-Based Generative AI LLMs in Java with Project Babylon",
+    "description": "The Open Neural Network Exchange (ONNX) serves as an universal format for representing machine learning models, facilitating their deployment across d...",
+    "speakers": [
+      "Adam Sotona"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Outcoded by Our Kids: It Took Us 20 Years, They Used 20 Prompts!",
+    "description": "This talk contrasts traditional software development with kids rapidly building games using AI-driven, no-code platforms, raising questions about the...",
+    "speakers": [
+      "jan van wassenhove",
+      "Bart Wullems"
+    ],
+    "track": "Build Different",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Paketo Buildpacks: the best way to build Java container images?",
+    "description": "This session explores the evolution of buildpacks, from early PaaS to modern Cloud Native Buildpacks for creating OCI images. It examines whether buil...",
+    "speakers": [
+      "Anthony Dahanne"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Panel Discussion: LangChain4j Turns Two - What We’ve Learned and What’s Next",
+    "description": "First introduced at Devoxx.BE 2023, LangChain4j has evolved into the de-facto standard for integrating Large Language Models into Java applications.Jo...",
+    "speakers": [
+      "Guillaume Laforge",
+      "Lize Raes"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Passkeys, one-time tokens: passwordless Spring Security",
+    "description": "This talk covers passwordless authentication in Spring Security 6.4, focusing on one-time tokens and passkeys. It explains the theory behind passkeys...",
+    "speakers": [
+      "Daniel Garnier-Moiroux"
+    ],
+    "track": "Security",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Pattern Matching, Under the Microscope",
+    "description": "Project Amber has introduced pattern matching into the Java language, improving both safety and expressiveness of our programs. With JEP 507 set to li...",
+    "speakers": [
+      "Angelos Bimpoudis"
+    ],
+    "track": "Java",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Picocli: put some Java in your terminal 💻!",
+    "description": "This session demonstrates how to easily build feature-rich command line interfaces in Java using Picocli and Quarkus, and create native executables wi...",
+    "speakers": [
+      "Stéphane Philippart"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Platform Engineering 101: Building Internal Developer Platforms",
+    "description": "This session explores how platform engineering and Internal Developer Platforms (IDPs) can reduce developer cognitive load, standardize tools, and boo...",
+    "speakers": [
+      "Maarten Vandeperre"
+    ],
+    "track": "Architecture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Pod Right-sizing in the Second Decade of Kubernetes",
+    "description": "This talk introduces Kubernetes In-Place Pod Resize (IPPR), enabling dynamic pod resource adjustments without restarts. IPPR simplifies right-sizing a...",
+    "speakers": [
+      "Abdel Sghiouar"
+    ],
+    "track": "Development Practices",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Practical API Testing with OpenAPI and Citrus Framework",
+    "description": "This session demonstrates how the Citrus Framework and Citrus Simulator elevate OpenAPI-based testing by generating test clients and realistic simulat...",
+    "speakers": [
+      "Timon Borter"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Protect your AI applications with the help of OWASP GenAI Security Project",
+    "description": "This talk introduces OWASP’s GenAI Security Project, outlining its resources for securing AI applications. It reviews typical AI app architectures, co...",
+    "speakers": [
+      "Nicolas Humblot"
+    ],
+    "track": "Security",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Quarkus Community BOF",
+    "description": "This session invites attendees to engage with Quarkus core team members and contributors, discuss its growing open-source ecosystem of 700+ extensions...",
+    "speakers": [
+      "Georgios Andrianakis",
+      "Dimitris Andreadis"
+    ],
+    "track": "Server Side Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Quarkus Unleashed",
+    "description": "This session explores how Quarkus transforms applications and libraries into efficient, resource-saving artifacts, enabling native builds with GraalVM...",
+    "speakers": [
+      "Roberto Cortez"
+    ],
+    "track": "Server Side Java",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Raising Young Coders",
+    "description": "Teaching kids programming at a young age is really important to improve diversity in the field of computer science. Studies show that after middle sch...",
+    "speakers": [
+      "Cassandra Chin"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Rise of the Agents: You, AI, and the Future of Society",
+    "description": "This session examines the transformative impact of AI agents on society, exploring their effects on technology, work, economics, law, ethics, and cult...",
+    "speakers": [
+      "Martijn Verburg"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "RoboCoders: Judgment Day – AI IDEs Face Off",
+    "description": "This session tests AI-powered IDEs like Cursor and Windsurf as autonomous agents, challenging them to build a smart light bulb controller from scratch...",
+    "speakers": [
+      "Viktor Gamov",
+      "Baruch Sadogursky"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Robotics and GraalVM native libraries",
+    "description": "Our company creates custom robotic solutions for a wide range of applications, from performing real-world industrial inspection tasks to providing rob...",
+    "speakers": [
+      "Florian Enner"
+    ],
+    "track": "Mind the geek",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Scaling AI Adoption: From 30 Engineers to Tech-Wide Transformation - Lessons from Doctolib's Journey",
+    "description": "This talk shares Doctolib’s practical experience scaling AI coding assistants from a 30-person pilot to 600+ engineers. It covers challenges faced, so...",
+    "speakers": [
+      "Thomas Bentkowski",
+      "Julien Tanay"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Secure by Culture: Building a Developer-Driven Security Mindset",
+    "description": "This talk argues that secure development relies more on behaviors than tools or policies, applying behavioral science (COM-B model) to foster lasting...",
+    "speakers": [
+      "Enrique Larios Vargas"
+    ],
+    "track": "People & Culture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Securing MCP Servers",
+    "description": "This talk explains how to secure Model Context Protocol (MCP)-based LLM applications using OAuth2, clarifying common pitfalls and best practices. It c...",
+    "speakers": [
+      "Daniel Garnier-Moiroux"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Securing Your CI/CD Pipelines: Best Practices and Strategies",
+    "description": "In a world where software supply chain attacks are increasingly common, securing your CI/CD pipelines has become a top priority. This presentation wil...",
+    "speakers": [
+      "Adrien Pessu"
+    ],
+    "track": "Security",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Self-Healing Rollouts: Automating Production Fixes with Agentic AI & Argo Rollouts",
+    "description": "This session demonstrates enhancing Kubernetes deployments by integrating Agentic AI with Argo Rollouts. Intelligent agents automatically analyze fail...",
+    "speakers": [
+      "Carlos Sanchez"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Shifting the trajectory: Undoing the damage of working in front of a computer screen",
+    "description": "Despite technological advancements, developers are suffering widespread health issues from prolonged sitting, which exercise and ergonomics alone can'...",
+    "speakers": [
+      "Georgios Diamantopoulos"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Simplifying Cloud Native App Testing across Environments with Dapr and Microcks",
+    "description": "This talk demonstrates how Java developers can streamline local development and testing of Spring Boot microservices using Dapr, Microcks, and Testcon...",
+    "speakers": [
+      "Laurent Broudoux",
+      "Mauricio Salatino"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Six and a half ridiculous things to do with Quarkus",
+    "description": "This session showcases unconventional, humorous uses of Quarkus, from LLM-powered hallucinations to meme-generating CLIs and Minecraft observability....",
+    "speakers": [
+      "Holly Cummins"
+    ],
+    "track": "Server Side Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Smart API sandboxes: why? what? how?",
+    "description": "This session shows how to overcome traditional API sandbox limitations by using Microcks to create smart, realistic, and easily maintained sandboxes....",
+    "speakers": [
+      "Laurent Broudoux"
+    ],
+    "track": "Development Practices",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Spec Driven Development Why your prompt chaos won’t scale",
+    "description": "This session introduces Spec Driven Development (SDD) for AI coding, replacing ad-hoc prompts with human-readable specifications to improve code relia...",
+    "speakers": [
+      "Simon Maple",
+      "Patrick Debois"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Spec-Driven Development with Kiro: Vibe-Coding with Guardrails",
+    "description": "Kiro is an AI-powered IDE that adapts to both flexible and structured development styles, generating detailed specifications and using them to automat...",
+    "speakers": [
+      "Kevin Azijn",
+      "Adriaan de Jonge"
+    ],
+    "track": "Build Different",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Spring Boot: Chapter 4",
+    "description": "Spring Boot 4.0 is scheduled for next November. While the Java baseline remains at 17, it’s the perfect time to leverage new language and framework fe...",
+    "speakers": [
+      "Brian Clozel",
+      "Stephane Nicoll"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Spring Boot in the Cloud: Advanced Optimization Deep Dive",
+    "description": "This hands-on workshop explores advanced Spring Boot optimization techniques for the cloud, covering memory reduction, faster startup, and state-of-th...",
+    "speakers": [
+      "Patrick Baumgartner"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Spring Boot Testing in Practice: What Changes (and What Doesn’t) with GenAI integrations",
+    "description": "This session explores comprehensive testing strategies for Spring Boot applications, addressing challenges from unit to load testing—especially with G...",
+    "speakers": [
+      "Andrei Shakirin"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Spring Debugger: Behind The Scenes of Spring Boot",
+    "description": "This talk introduces the new Spring Debugger in IntelliJ IDEA, which demystifies Spring Boot internals by providing clear, actionable insights into co...",
+    "speakers": [
+      "Marco Behler"
+    ],
+    "track": "Server Side Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Stop Scheduling Like It’s 1999 – Green Software Needs Better Timing",
+    "description": "This talk introduces GreenScheduled, a Java library that schedules automated jobs during periods of lower carbon intensity by integrating real-time gr...",
+    "speakers": [
+      "Ted Vinke"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Structured Concurrency in Action",
+    "description": "This session explores the latest Java 25 structured concurrency API, highlighting its key changes, error handling, thread relationships, and refactori...",
+    "speakers": [
+      "Nicolai Parlog"
+    ],
+    "track": "Java",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Supercharge your JVM performance with Project Leyden and Spring Boot",
+    "description": "This session explores Project Leyden’s efforts to improve Java startup and peak performance, especially for microservices and Kubernetes. Attendees wi...",
+    "speakers": [
+      "Ana-Maria Mihalceanu",
+      "Moritz Halbritter"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "TDD & DDD From the Ground Up (Live Coding)",
+    "description": "This session demonstrates how to start software projects with Test-Driven Development and evolve toward Domain-Driven Design as complexity grows. Thro...",
+    "speakers": [
+      "Chris Simon"
+    ],
+    "track": "Development Practices",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Teachers BOF",
+    "description": "Are you involved in teaching Java (or software development in general) to your co-workers and/or the next generation? Then let’s share our experiences...",
+    "speakers": [
+      "Hanno Embregts",
+      "Pim Tegelaar"
+    ],
+    "track": "People & Culture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Testing AI service providers with local LLMs, Testcontainers, and Microcks",
+    "description": "This session demonstrates building a local, cost-effective integration testing framework for Spring Boot apps using tools like Testcontainers, Microck...",
+    "speakers": [
+      "Oleg Nenashev"
+    ],
+    "track": "Development Practices",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "Testing Challenges in the Age of AI",
+    "description": "AI apps challenge traditional QA due to non-determinism, security needs, and complex agent workflows. This session introduces a layered testing approa...",
+    "speakers": [
+      "Konstantin Pavlov"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "The Awareness Layer",
+    "description": "As AI coding agents accelerate software delivery, organizational bottlenecks shift from engineering to areas like approvals and policy. This talk intr...",
+    "speakers": [
+      "Robert  Ranson"
+    ],
+    "track": "People & Culture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "The Best of Java Shorts Show: 100 Snippets in 50 Minutes",
+    "description": "This session showcases the next set of top-rated and unique Java code snippets—demonstrating tasks like running Java apps without compilation, handlin...",
+    "speakers": [
+      "Adam Bien"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "The Bold, the Broken, and the Burned: Hard won lessons in the 6 years of developing Quarkus",
+    "description": "As software engineers, we are faced with lots of choices. Additionally, when developing libraries or frameworks that are used by lots of other softwar...",
+    "speakers": [
+      "Georgios Andrianakis",
+      "Guillaume Smet"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "The Diabolical Developer: Rise of the Rogue Agents",
+    "description": "This satirical talk explores the rise of autonomous AI agents in software development, highlighting risks, misuse, and the chaotic potential of agenti...",
+    "speakers": [
+      "Martijn Verburg"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "The Future of Refactoring: Test-Driven Navigation",
+    "description": "This talk introduces Test-Driven Navigation (TDN), a workflow using failing tests as precise instructions to guide AI in safe, incremental code change...",
+    "speakers": [
+      "Alex Bunardzic"
+    ],
+    "track": "Development Practices",
+    "level": "ADVANCED",
+    "room": null
+  },
+  {
+    "title": "The Invisible Monster: The Carbon Footprint of AI",
+    "description": "This talk examines the significant carbon emissions generated by training and using generative AI and LLMs, highlighting their environmental impact. I...",
+    "speakers": [
+      "Olivier Bierlaire"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "The LLM Smörgåsbord",
+    "description": "This talk provides an up-to-date overview of the vast landscape of large language models (LLMs), their multimodal capabilities, practical uses, and de...",
+    "speakers": [
+      "John Davies"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "The New Java Best Practices",
+    "description": "Java evolves. And so must our Best Practices. Because it is not enough to simply learn the new features, we must learn how to use them well. In this s...",
+    "speakers": [
+      "Stephen Colebourne"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "The power of Cursor rules in Java Enterprise development",
+    "description": "Cursor AI is transforming software development for engineers and organizations alike. One of its most powerful features is Cursor Rules, which provide...",
+    "speakers": [
+      "Juan Antonio Breña Moral"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "The ⁠Psychology of Code",
+    "description": "This keynote explores how cognitive biases and emotional traps affect software development, influencing team decisions, design, and debugging. Attende...",
+    "speakers": [
+      "Victor Rentea"
+    ],
+    "track": "People & Culture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "The Road Not Taken: A Developer's Guide to Life Beyond Spring Boot",
+    "description": "Beyond Spring Boot lies a world of possibilities waiting to be explored. Join me as we chart a course from heavyweight champions Quarkus and Micronaut...",
+    "speakers": [
+      "Frederik Pietzko"
+    ],
+    "track": "Server Side Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "The Three Amigos in Java",
+    "description": "The meticulous, yet fast-paced, evolution of Java has brought us three separate features, Records, Sealed classes/interfaces, and The Pattern Matching...",
+    "speakers": [
+      "Venkat Subramaniam"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "The Ultimate Showdown of Database Migration Tools",
+    "description": "When it comes to database migration in the Spring ecosystem, two heavyweights dominate: Liquibase and Flyway. While both tools bring unique strengths...",
+    "speakers": [
+      "Anton Arhipov",
+      "Pasha Finkelshteyn"
+    ],
+    "track": "Server Side Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "The Wait is Over: LTS Java 25 brings FFM to #JavaOnRaspberryPi",
+    "description": "This session introduces Pi4J's upgrade to Java 25 using the new Foreign Function & Memory (FFM) API, simplifying native hardware integration on Raspbe...",
+    "speakers": [
+      "Frank Delporte"
+    ],
+    "track": "Mind the geek",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "The Yoga of Image Generation with Stable Diffusion & ComfyUI",
+    "description": "This session showcases Stable Diffusion for generating precise, diverse yoga pose images using ComfyUI, ControlNets, and related tools. Through live d...",
+    "speakers": [
+      "Raphaël Semeteys"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Things You Thought You Didn’t Need To Care About That Have a Big Impact On Your Job",
+    "description": "This talk explores how physics, statistics, and economics shape modern software development, highlighting the impact of Moore’s Law ending, concurrent...",
+    "speakers": [
+      "Holly Cummins"
+    ],
+    "track": "People & Culture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Think with your hands: introduction to Lego Serious Play",
+    "description": "This workshop introduces LEGO® SERIOUS PLAY® as a hands-on methodology for creative problem-solving, team alignment, and deeper reflection. Participan...",
+    "speakers": [
+      "Annabelle Buffart"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Thirty years of Java development: keeping it all together",
+    "description": "This talk explores how CERN manages decades of Java systems, from legacy monoliths to modern microservices, for 80+ developers. It covers standardizin...",
+    "speakers": [
+      "Cristian Schuszter"
+    ],
+    "track": "Development Practices",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Top 10 Event-Driven Architecture Pitfalls",
+    "description": "This entertaining session explores real-world challenges and best practices in event-driven messaging systems, covering issues like duplicate messages...",
+    "speakers": [
+      "Victor Rentea"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Tornado Cash, the World's Biggest Cyber Crimes and Modern Privacy",
+    "description": "This talk examines the massive Axie Infinity crypto-heist, detailing the sophisticated attack chain, how stolen assets were laundered through a DAO-ba...",
+    "speakers": [
+      "James Birnie"
+    ],
+    "track": "Security",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "TornadoVM Deep Dive: Empowering Java Developers with GPU Acceleration",
+    "description": "This session explores TornadoVM, an open-source tool enabling Java developers to accelerate applications on GPUs and other hardware without advanced G...",
+    "speakers": [
+      "Michalis Papadimitriou",
+      "Thanos Stratikopoulos"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Tulips to Turmeric: Lessons Learned from a Global Team",
+    "description": "This session shares personal stories and practical strategies for overcoming cultural and communication challenges in global software teams. It offers...",
+    "speakers": [
+      "Rijo Sam"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Understanding Kubernetes in a visual way",
+    "description": "The talk shares the speaker’s journey of simplifying Kubernetes concepts through sketchnotes, blogs, videos, and a comprehensive illustrated book. It...",
+    "speakers": [
+      "Aurélie Vache"
+    ],
+    "track": "Architecture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Understanding Prompt Injection - Techniques, Challenges, and Advanced Escalation",
+    "description": "This session explores the rising threat of prompt injection in AI and LLM applications, detailing common attack methods and advanced risks. It also pr...",
+    "speakers": [
+      "Brian Vermeer"
+    ],
+    "track": "Security",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Unifying AI integration with Model Context Protocol",
+    "description": "The talk introduces the Model Context Protocol (MCP), a standard for integrating AI models with external tools via a client-server architecture. Atten...",
+    "speakers": [
+      "Christian Tzolov",
+      "Dariusz Jędrzejczyk"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Unlocking AI Coding Assistants: Real-World Use Cases",
+    "description": "This talk shares practical strategies for effectively using AI coding assistants, addressing common issues like inaccuracy and inconsistency. Attendee...",
+    "speakers": [
+      "Gunter Rotsaert"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Vibe-coding your way into a security nightmare",
+    "description": "This talk examines the risks of unguided AI-generated code and promotes a balanced, knowledgeable approach to AI-assisted development. It offers pract...",
+    "speakers": [
+      "Arjen Wiersma"
+    ],
+    "track": "Security",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Virtual Threads, Structured Concurrency and Scoped Values: Putting it all together",
+    "description": "This session demonstrates how to integrate Project Loom features—Virtual Threads, Structured Concurrency, and Scoped Values—into a Spring Boot applica...",
+    "speakers": [
+      "Balkrishna Rawool"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Visualizing social networks at planetary scale, one billion pixels at a time",
+    "description": "This talk explores advanced graph theory techniques for analyzing massive social media networks, highlighting technical challenges of visualizing grap...",
+    "speakers": [
+      "Mathis Hammel"
+    ],
+    "track": "Mind the geek",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Wat? That’s possible in Java?",
+    "description": "Over ten years ago, Gary Bernhardt gave a lightning talk called “Wat.” Gary gave Ruby and JavaScript examples that were funny and surprising for most...",
+    "speakers": [
+      "Michael Vitz"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Weather the Storm: How Value Classes Will Enhance Java Performance",
+    "description": "Project Valhalla's value classes represent Java's most significant evolution since Java 8. In this beginner-friendly session, we will explore how valu...",
+    "speakers": [
+      "Clément de Tastes",
+      "Remi Forax"
+    ],
+    "track": "Java",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "What Can You Do with an Apache Kafka \"Queue?\"",
+    "description": "This talk introduces KIP-932, enabling a new consumer group model in Kafka for parallel event processing beyond partition limits, ideal when ordering...",
+    "speakers": [
+      "Sandon Jacobs"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "What Can You Do with an Apache Kafka \"Queue?\"",
+    "description": "This talk introduces KIP-932, enabling a new consumer group model in Kafka for parallel event processing beyond partition limits, ideal when ordering...",
+    "speakers": [
+      "Sandon Jacobs"
+    ],
+    "track": "Architecture",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "What comes after Git?",
+    "description": "Are the version control system wars over? It mostly looks like that, as Git has been the default contender for more than the past 10 years. But how di...",
+    "speakers": [
+      "Christian Schabetsberger"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "What the Duck?🦆 The Hidden Crisis in Tech",
+    "description": "We smile in meetings 😊, ship features 🚀, post wins ✨. But under the surface? Most of us are paddling like hell 🫠.This talk unpacks the Duck Syndrom...",
+    "speakers": [
+      "Aicha Laafia"
+    ],
+    "track": "People & Culture",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "What’s new with the JCP?",
+    "description": "Learn about how to participate in the evolution of Java technology through the JCP and how to grow and build the next generation of Java developers, t...",
+    "speakers": [
+      "Heather VanCura",
+      "Stuart Marks"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "When ORM Becomes OMG: Performance Pitfalls in JPA and Friends",
+    "description": "JPA makes database interaction feel almost magical—until your app grinds to a halt. In this talk, we’ll take a tour through the common (and not-so-com...",
+    "speakers": [
+      "Jos Roseboom"
+    ],
+    "track": "Server Side Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Why Haven’t They Fixed This?",
+    "description": "This talk examines longstanding Java language and platform issues, explores why seemingly simple problems remain unresolved, and debates potential sol...",
+    "speakers": [
+      "Stuart Marks",
+      "Maurice  Naftalin"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Why I Am Not Afraid AI Will Take My Job",
+    "description": "Large language models (LLMs) are here to stay. So is their impact on many professions. Our work in IT is no exception to that rule. Some doomsayers pr...",
+    "speakers": [
+      "Maarten Mulders"
+    ],
+    "track": "Build Different",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Wirespec - API design, actually spec first, in your ecosystem",
+    "description": "Do you see the potential of API specification first design, and agree that OpenAPI has some big drawbacks? We think so too, which is why we created Wi...",
+    "speakers": [
+      "Jerre van Veluw"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Writing GPU-Ready AI Models in Pure Java with Babylon",
+    "description": "This session introduces Project Babylon, enabling developers to build and run AI models directly in Java with GPU acceleration, using Code Reflection...",
+    "speakers": [
+      "Ana-Maria Mihalceanu",
+      "Lize Raes"
+    ],
+    "track": "Java",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Yes, We Put AI Agents for Healthcare in Production. No, Don't Try This at Home",
+    "description": "... or at least come to this talk before to learn more about our wins and our face-palms.At Komodo Health, we provide the most complete and unbiased m...",
+    "speakers": [
+      "Marie-Alice Blete"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "YOLO - moving straight to production",
+    "description": "This talk contrasts traditional, complex QA processes with a modern, \"ninja\" approach that leverages autonomous teams, DevOps skills, and microservice...",
+    "speakers": [
+      "Adam Michalik"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "You Don’t Need a PhD to Try Quantum Computing",
+    "description": "This talk provides a beginner-friendly overview of quantum computing for developers, highlighting practical tools, languages, and simulators such as Q...",
+    "speakers": [
+      "Matteo Di Pirro"
+    ],
+    "track": "Mind the geek",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Your Code Base as a Crime Scene",
+    "description": "Drawing parallels with Cluedo, this session humorously explores the various contributors to codebase decline—ranging from engineers to managers—and th...",
+    "speakers": [
+      "Scott Sosna"
+    ],
+    "track": "Development Practices",
+    "level": "INTERMEDIATE",
+    "room": null
+  },
+  {
+    "title": "Your offspring is our Future, so let us help you!",
+    "description": "This session shares updates on Devoxx4Kids initiatives in Belgium and the Netherlands, aiming to bridge the digital divide by providing free, fun codi...",
+    "speakers": [
+      "Daniel De Luca",
+      "Eddy Vos"
+    ],
+    "track": "Mind the geek",
+    "level": "BEGINNER",
+    "room": null
+  },
+  {
+    "title": "Your Survival Guide to AI in Software Development",
+    "description": "AI is flooding the developer toolbox. Chatbots, coding assistants, agents, local LLMs... it’s a mess.This talk is your survival guide. We’ll cut throu...",
+    "speakers": [
+      "Rafik FERROUKH"
+    ],
+    "track": "GenAI & Beyond",
+    "level": "BEGINNER",
+    "room": null
+  }
+]

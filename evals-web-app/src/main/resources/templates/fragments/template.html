@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Default Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/evals.css}" rel="stylesheet">
+
+    <style type="text/css">
+        .table-responsive {
+            font-size: 0.9rem;
+        }
+        .text-truncate-custom {
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .btn-sm {
+            font-size: 0.8rem;
+        }
+        .modal-dialog-xl {
+            max-width: 90%;
+        }
+        .human-score-form {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" th:href="@{/home}">Rag4j ~ Agent Evals</a>
+            <span class="navbar-text text-light me-3" th:if="${activeProfile}" th:text="'[' + ${activeProfile} + ']'" style="font-size: 0.9em; opacity: 0.8;"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/evaluations}">Evaluations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/runs}">Runs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/runs/new}">New Run</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<footer th:fragment="footer" class="footer mt-auto py-3 bg-body-tertiary">
+    <div class="container">
+        <p>&copy; 2025 Rag4j.org - Evals Manager. All rights reserved.</p>
+        <ul class="list-unstyled d-flex">
+            <li class="ms-3">
+                <a class="link-dark" href="https://github.com/rag4j/agentic-workshop.git" target="_blank" rel="noopener">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+<div th:fragment="scripts">
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <!-- WebSocket dependencies for real-time progress updates -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.6.1/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script th:src="@{/js/evals.js}"></script>
+</div>
+
+<!-- Alert fragments -->
+<div th:fragment="alerts">
+    <div th:if="${success}" class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle me-2"></i>
+        <span th:text="${success}">Success message</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    
+    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="fas fa-exclamation-triangle me-2"></i>
+        <span th:text="${error}">Error message</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    
+    <div th:if="${info}" class="alert alert-info alert-dismissible fade show" role="alert">
+        <i class="fas fa-info-circle me-2"></i>
+        <span th:text="${info}">Info message</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+</div>
+
+</body>
+</html>

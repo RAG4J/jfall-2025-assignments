@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en-GB">
+<head th:replace="~{fragments/template :: head('Run Details')}"></head>
+<body class="bg-light d-flex flex-column min-vh-100">
+    <header th:replace="~{fragments/template :: header}"></header>
+    
+    <main class="container py-4 flex-grow-1">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">
+                <i class="fas fa-cog me-2"></i>
+                Run Details
+            </h1>
+            <div class="d-flex gap-2">
+                <a th:href="@{'/evaluations?runId=' + ${run.id}}" class="btn btn-primary">
+                    <i class="fas fa-table me-1"></i>View Records
+                </a>
+                <a th:href="@{'/runs/' + ${run.id} + '/edit'}" class="btn btn-outline-secondary">
+                    <i class="fas fa-edit me-1"></i>Edit
+                </a>
+                <a th:href="@{/runs}" class="btn btn-outline-primary">
+                    <i class="fas fa-list me-1"></i>All Runs
+                </a>
+            </div>
+        </div>
+
+        <!-- Alerts -->
+        <div th:replace="~{fragments/template :: alerts}"></div>
+
+        <!-- Run Information Card -->
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-info-circle me-2"></i>
+                            Run Information
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <strong>Name:</strong>
+                                <p th:text="${run.name}">Run Name</p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Status:</strong>
+                                <br>
+                                <span th:class="${run.statusBadgeClass}" th:text="${run.status}">Status</span>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <strong>Description:</strong>
+                                <p th:text="${run.description ?: 'No description provided'}" class="text-muted">Description</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <strong>Total Records:</strong>
+                                <p class="h4 text-primary mb-0" th:text="${run.totalRecords}">0</p>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Completed:</strong>
+                                <p class="h4 text-success mb-0" th:text="${run.completedRecords}">0</p>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>Progress:</strong>
+                                <p class="h4 text-info mb-0" th:text="${#numbers.formatDecimal(run.completionPercentage, 1, 1)} + '%'">0.0%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <strong>Created At:</strong>
+                                <p th:text="${#temporals.format(run.createdAt, 'yyyy-MM-dd HH:mm:ss')}" class="text-muted">Creation time</p>
+                            </div>
+                            <div class="col-md-6" th:if="${run.completedAt}">
+                                <strong>Completed At:</strong>
+                                <p th:text="${#temporals.format(run.completedAt, 'yyyy-MM-dd HH:mm:ss')}" class="text-muted">Completion time</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between mb-1">
+                                <small class="text-muted">Execution Progress</small>
+                                <small class="text-muted" th:text="${run.completedRecords} + '/' + ${run.totalRecords}">0/0</small>
+                            </div>
+                            <div class="progress" style="height: 12px;">
+                                <div class="progress-bar" role="progressbar" 
+                                     th:style="'width: ' + ${run.completionPercentage} + '%'"
+                                     th:attr="aria-valuenow=${run.completionPercentage}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Actions Card -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-bolt me-2"></i>
+                            Actions
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <!-- Execute Button -->
+                        <div class="d-grid mb-3">
+                            <button class="btn btn-success btn-lg"
+                                    th:id="'executeBtn-' + ${run.id}"
+                                    th:attr="data-run-id=${run.id}, data-execute-url=@{'/runs/' + ${run.id} + '/execute'}"
+                                    onclick="executeRunWithProgress(this.dataset.runId, this.dataset.executeUrl)"
+                                    th:disabled="${run.status == 'RUNNING'}">
+                                <i class="fas fa-play me-2"></i>
+                                <span th:if="${run.status == 'RUNNING'}">Running...</span>
+                                <span th:unless="${run.status == 'RUNNING'}">Execute Run</span>
+                            </button>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="bg-light p-3 rounded">
+                            <h6 class="mb-2">Quick Stats</h6>
+                            <div class="row g-0 text-center">
+                                <div class="col-6">
+                                    <div class="border-end">
+                                        <div class="fw-bold text-primary" th:text="${recordCount}">0</div>
+                                        <small class="text-muted">Records</small>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="fw-bold text-success" th:text="${#numbers.formatDecimal(run.completionPercentage, 0, 1)} + '%'">0%</div>
+                                    <small class="text-muted">Complete</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Links -->
+                        <div class="mt-3">
+                            <div class="d-grid gap-2">
+                                <a th:href="@{'/evaluations?runId=' + ${run.id}}" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-table me-1"></i>View All Records
+                                </a>
+                                <a th:href="@{'/runs/' + ${run.id} + '/edit'}" class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-edit me-1"></i>Edit Run Settings
+                                </a>
+                                <button class="btn btn-outline-danger btn-sm"
+                                        th:attr="data-run-id=${run.id}"
+                                        onclick="confirmDeleteRun(this.dataset.runId)">
+                                    <i class="fas fa-trash me-1"></i>Delete Run
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Configuration Card -->
+                <div class="card mt-4" th:if="${run.configuration}">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-cogs me-2"></i>
+                            Configuration
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-5">Model:</dt>
+                            <dd class="col-sm-7" th:text="${run.configuration.modelName ?: 'Not specified'}">Model Name</dd>
+                            
+                            <dt class="col-sm-5">Temperature:</dt>
+                            <dd class="col-sm-7" th:text="${run.configuration.temperature ?: 'Not specified'}">Temperature</dd>
+                            
+                            <dt class="col-sm-5">Max Tokens:</dt>
+                            <dd class="col-sm-7" th:text="${run.configuration.maxTokens ?: 'Not specified'}">Max Tokens</dd>
+                            
+                            <dt class="col-sm-5">Batch Size:</dt>
+                            <dd class="col-sm-7" th:text="${run.configuration.batchSize ?: 'Not specified'}">Batch Size</dd>
+                        </dl>
+                    </div>
+                </div>
+                
+                <!-- Accuracy Metrics Card -->
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-chart-line me-2"></i>
+                            Accuracy Metrics
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted">Human Score Accuracy:</span>
+                                    <span th:class="${run.humanAccuracyBadgeClass}" th:text="${run.formattedHumanScoreAccuracy}">N/A</span>
+                                </div>
+                                <div class="mt-1">
+                                    <small class="text-muted">Percentage of responses rated as "Good" by human evaluators</small>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <hr class="my-2">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-muted">LLM Rating Accuracy:</span>
+                                    <span th:class="${run.llmAccuracyBadgeClass}" th:text="${run.formattedLlmRatingAccuracy}">N/A</span>
+                                </div>
+                                <div class="mt-1">
+                                    <small class="text-muted">Percentage of cases where human and LLM scores agree</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info mt-3 mb-0" th:if="${run.humanScoreAccuracy == null or run.llmRatingAccuracy == null}">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <small>Accuracy metrics will be calculated automatically as human scores are added to evaluation records.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer th:replace="~{fragments/template :: footer}"></footer>
+    <div th:replace="~{fragments/template :: scripts}"></div>
+    
+    <script>
+        
+        // Delete run functionality
+        function confirmDeleteRun(runId) {
+            if (confirm('Are you sure you want to delete this evaluation run? This will also delete all associated records.')) {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = `/runs/${runId}`;
+                
+                const methodInput = document.createElement('input');
+                methodInput.type = 'hidden';
+                methodInput.name = '_method';
+                methodInput.value = 'DELETE';
+                form.appendChild(methodInput);
+                
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
+</body>
+</html>
