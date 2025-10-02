@@ -2,6 +2,7 @@ package org.rag4j.agent.springai;
 
 import io.modelcontextprotocol.client.McpSyncClient;
 import org.rag4j.agent.core.Agent;
+import org.rag4j.agent.springai.mcp.ToolCallbackUtility;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -27,8 +28,12 @@ public class SpringAIAgentConfig {
 
     @Bean
     @Primary
-    public Agent talksSpringAIAgent(ChatClient chatClient, ConferenceTalksTools conferenceTalksTools, ChatMemory chatMemory) {
-        return new TalksAgent(chatClient, conferenceTalksTools, chatMemory);
+    public Agent talksSpringAIAgent(ChatClient chatClient,
+                                    ConferenceTalksTools conferenceTalksTools,
+                                    ChatMemory chatMemory,
+                                    List<McpSyncClient> mcpSyncClients) {
+        return new TalksAgent(chatClient, conferenceTalksTools, chatMemory, new SyncMcpToolCallbackProvider(mcpSyncClients),
+                ToolCallbackUtility.wrapToolCallbacks(mcpSyncClients));
     }
 
     @Bean

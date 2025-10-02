@@ -1,8 +1,26 @@
 spring:
   profiles:
-    active: springai-multi
+    active: springai
   application:
     name: agent-workshop-assignments
+  ai:
+    mcp:
+      client:
+        enabled: true
+        type: SYNC
+        stdio:
+          connections:
+            location:
+              command: java
+              args:
+                - -Dspring.ai.mcp.server.stdio=true
+                - -jar
+                - "${FAVOURITES_MCP_JAR:${user.dir}/favourites-mcp/target/favourites-mcp-0.0.1-SNAPSHOT.jar}"
+#        sse:
+#          connections:
+#            favourites:
+#              url: http://localhost:8081
+#              sse-endpoint: /sse
 
 
 openai:
