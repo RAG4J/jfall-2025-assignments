@@ -14,17 +14,28 @@ import java.util.List;
 public class SciFiAgent extends ActionAgent {
     private static final Logger logger = LoggerFactory.getLogger(SciFiAgent.class);
 
-    public SciFiAgent(ChatClient chatClient) {
-        super(chatClient);
+    public SciFiAgent(ChatClient chatClient, ChatMemory chatMemory) {
+        super(chatClient, chatMemory);
     }
 
     @Override
     public Conversation doInvoke(String userId, Conversation.Message userMessage) {
         logger.info("SciFiAgent invoke userId = {}, userMessage = {}", userId, userMessage);
 
-        String content = "Dummy reponse from SciFiAgent";
+        String prompt = """
+                You are a geek that knows everything about Science Fiction related topics and likes to answer questions about this.
+                Science Fiction is your only expertise, so you can not answer questions related to other topics.
+                If the question is about a non-scifi topic, just say you don't know anything about that subject.
+                """;
+
+        String content = this.chatClient.prompt()
+                .advisors(MessageChatMemoryAdvisor.builder(chatMemory).conversationId(userId).build())
+                .system(prompt)
+                .user(userMessage.content())
+                .call()
+                .content();
 
         logger.info("SpringAIAgent invoke content = {}", content);
-        return new Conversation(List.of(userMessage, new Conversation.Message(content, Sender.ASSISTANT)));
+        return convertChatMemoryToConversation(chatMemory, userId);
     }
 }

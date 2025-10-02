@@ -15,9 +15,11 @@ import static org.rag4j.agent.core.Sender.USER;
 
 public abstract class ActionAgent implements Agent {
     protected final ChatClient chatClient;
+    protected final ChatMemory chatMemory;
 
-    public ActionAgent(ChatClient chatClient) {
+    public ActionAgent(ChatClient chatClient, ChatMemory memory) {
         this.chatClient = chatClient;
+        this.chatMemory = memory;
     }
 
     @Override
@@ -26,4 +28,22 @@ public abstract class ActionAgent implements Agent {
     }
 
     protected abstract Conversation doInvoke(String userId, Conversation.Message userMessage);
+
+    protected Conversation convertChatMemoryToConversation(ChatMemory chatMemory, String userId) {
+        List<Conversation.Message> messages = new ArrayList<>();
+        for  (Message message : chatMemory.get(userId)) {
+            switch (message.getMessageType()) {
+                case MessageType.USER:
+                    messages.add(new Conversation.Message(message.getText(), USER));
+                    break;
+                case MessageType.ASSISTANT:
+                    messages.add(new Conversation.Message(message.getText(), ASSISTANT));
+                    break;
+                default:
+                    throw new RuntimeException("Unknown message type: " + message.getMessageType());
+            }
+        }
+        return new Conversation(messages);
+    }
+
 }

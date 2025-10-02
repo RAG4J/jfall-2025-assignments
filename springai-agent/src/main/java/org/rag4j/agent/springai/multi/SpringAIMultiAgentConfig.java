@@ -1,6 +1,7 @@
 package org.rag4j.agent.springai.multi;
 
 import org.rag4j.agent.core.Agent;
+import org.rag4j.agent.springai.ConferenceTalksTools;
 import org.rag4j.agent.springai.TalksAgent;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -22,9 +23,10 @@ public class SpringAIMultiAgentConfig {
     }
 
     @Bean
-    public AgentRegistry agentRegister(TalksAgent talksAgent) {
+    public AgentRegistry agentRegister(TalksAgent talksAgent, SciFiAgent sciFiAgent) {
         AgentRegistry agentRegistry = new AgentRegistry();
         agentRegistry.registerAgent("Conference Talks Specialist",  talksAgent);
+        agentRegistry.registerAgent("SciFi Specialist",  sciFiAgent);
         return agentRegistry;
     }
 
@@ -35,7 +37,18 @@ public class SpringAIMultiAgentConfig {
     }
 
     @Bean
-    public TalksAgent talksAgent(ChatClient chatClient) {
-        return new TalksAgent(chatClient);
+    public TalksAgent talksAgent(ChatClient chatClient, ConferenceTalksTools conferenceTalksTools, ChatMemory chatMemory) {
+        return new TalksAgent(chatClient, conferenceTalksTools, chatMemory);
     }
+
+    @Bean
+    public SciFiAgent sciFiAgent(ChatClient chatClient, ChatMemory chatMemory) {
+        return new SciFiAgent(chatClient, chatMemory);
+    }
+
+    @Bean
+    public ChatMemory chatMemory() {
+        return MessageWindowChatMemory.builder().build();
+    }
+
 }

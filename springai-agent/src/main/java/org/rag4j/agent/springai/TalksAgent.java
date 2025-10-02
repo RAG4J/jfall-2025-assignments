@@ -4,6 +4,8 @@ import org.rag4j.agent.core.Conversation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
+import org.springframework.ai.chat.memory.ChatMemory;
 
 import java.util.List;
 
@@ -16,8 +18,11 @@ import static org.rag4j.agent.core.Sender.ASSISTANT;
 public class TalksAgent extends ActionAgent {
     private static final Logger logger = LoggerFactory.getLogger(TalksAgent.class);
 
-    public TalksAgent(ChatClient chatClient) {
-        super(chatClient);
+    private final ConferenceTalksTools conferenceTalksTools;
+
+    public TalksAgent(ChatClient chatClient, ConferenceTalksTools tools, ChatMemory memory) {
+        super(chatClient, memory);
+        this.conferenceTalksTools = tools;
     }
 
     @Override
@@ -33,10 +38,12 @@ public class TalksAgent extends ActionAgent {
         String content = this.chatClient.prompt()
                 .system(prompt)
                 .user(userMessage.content())
+                .tools(this.conferenceTalksTools)
+                .advisors(MessageChatMemoryAdvisor.builder(this.chatMemory).conversationId(userId).build())
                 .call()
                 .content();
         assert content != null;
         logger.info("SpringAIAgent invoke content = {}", content);
-        return new Conversation(List.of(userMessage, new Conversation.Message(content, ASSISTANT)));
+        return convertChatMemoryToConversation(chatMemory, userId);
     }
 }

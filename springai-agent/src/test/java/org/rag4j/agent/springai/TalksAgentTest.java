@@ -14,7 +14,9 @@ class TalksAgentTest {
     @DisplayName("SpringAIAgent can be created with required dependencies")
     void springAIAgentCanBeCreatedWithRequiredDependencies() {
         ChatClient chatClient = mock(ChatClient.class);
-        TalksAgent agent = new TalksAgent(chatClient);
+        ConferenceTalksTools tools = mock(ConferenceTalksTools.class);
+        ChatMemory chatMemory = mock(ChatMemory.class);
+        TalksAgent agent = new TalksAgent(chatClient, tools, chatMemory);
         
         assertNotNull(agent);
     }

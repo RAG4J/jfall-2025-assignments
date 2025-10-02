@@ -1,14 +1,14 @@
 spring:
   profiles:
-    active: default
+    active: springai-multi
   application:
     name: agent-workshop-assignments
 
 
 openai:
   proxy:
-#    url: https://vfjv12h3xb.execute-api.eu-west-1.amazonaws.com
-    url:
+    url: https://vfjv12h3xb.execute-api.eu-west-1.amazonaws.com
+#    url:
     token:
     password: ${WORKSHOP_PASSWORD:}
     user-id: workshop-default

@@ -27,7 +27,13 @@ public class SpringAIAgentConfig {
 
     @Bean
     @Primary
-    public Agent talksSpringAIAgent(ChatClient chatClient) {
-        return new TalksAgent(chatClient);
+    public Agent talksSpringAIAgent(ChatClient chatClient, ConferenceTalksTools conferenceTalksTools, ChatMemory chatMemory) {
+        return new TalksAgent(chatClient, conferenceTalksTools, chatMemory);
     }
+
+    @Bean
+    public ChatMemory chatMemory() {
+        return MessageWindowChatMemory.builder().build();
+    }
+
 }
