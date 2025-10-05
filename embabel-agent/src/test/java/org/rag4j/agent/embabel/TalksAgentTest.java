@@ -28,12 +28,12 @@ public class TalksAgentTest {
                 org.rag4j.agent.core.Sender.ASSISTANT
         ))));
 
-//        EmbabelConferenceTools tools = mock(EmbabelConferenceTools.class);
-        var agent = new TalksAgent();
+        EmbabelConferenceTools tools = mock(EmbabelConferenceTools.class);
+        var agent = new TalksAgent(tools);
 
         agent.answerQuestion(
+                new UserId("the-user-id"),
                 new UserInput("Can you give me all the talks from Alice Smith?"),
-//                new UserId("the-user-id"),
                 context
         );
 

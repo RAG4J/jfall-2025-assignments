@@ -15,25 +15,39 @@ import org.slf4j.LoggerFactory;
 @Agent(name = "TalksAgent",
         description = "An agent that answers questions about conference talks",
         version = "1.0.0")
-public record TalksAgent() {
+public record TalksAgent(EmbabelConferenceTools conferenceTools) {
     private static final Logger logger = LoggerFactory.getLogger(TalksAgent.class);
 
+    @Action
+    public UserId identifyUser(OperationContext context) {
+        logger.info("Identifying user with identity: {}", RequestIdentity.getUserId());
+        // In a real implementation, you might look up the user in a database
+        return new UserId(RequestIdentity.getUserId() != null ? RequestIdentity.getUserId() : "anonymous");
+    }
 
     @AchievesGoal(
             description = "Answers a question about conference talks using tools to obtain the right talks."
     )
-    @Action
-    public Conversation answerQuestion(UserInput question, OperationContext context) {
+    @Action(toolGroups = "mcp-favourites")
+    public Conversation answerQuestion(UserId userId, UserInput question, OperationContext context) {
         Conversation response = context.ai().withLlm(OpenAiModels.GPT_41_MINI)
+                .withToolObject(conferenceTools)
                 .createObject(String.format("""
                                  You will be given a question about conference talks.
                                  You have access to talks to search for conference talks.
                                  Your task is to answer the question using the information from the talks.
                                 
+                                 If the question is about favourites, use the favourite tools to get the information.
+                                 You need a userId this is provided.
+                                
+                                 # User ID
+                                 %s
+                                
                                  # Question
                                  %s
                                 
                                 """,
+                        userId.id(),
                         question.getContent()
                 ).trim(), Conversation.class);
         logger.info("Response generated: {}", response.messages().getFirst().content());
