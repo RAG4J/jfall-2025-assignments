@@ -2,6 +2,7 @@ package org.rag4j.agent;
 
 import com.openai.client.OpenAIClient;
 import org.rag4j.agent.core.Agent;
+import org.rag4j.agent.memory.Memory;
 import org.rag4j.agent.reasoning.OpenAIReasoning;
 import org.rag4j.agent.reasoning.SystemPrompt;
 import org.rag4j.agent.tools.ToolRegistry;
@@ -19,7 +20,8 @@ public class PlainAgentConfig {
     public Agent orchestratorAgent(
             OpenAIClient openAIClient,
             PlainAgentReasoningConfigProperties agentConfigProperties,
-            ToolRegistry toolRegistry) {
+            ToolRegistry toolRegistry,
+            Memory memory) {
 
         SystemPrompt systemPrompt = new SystemPrompt(
                 "Conference Talks Agent",
@@ -27,7 +29,7 @@ public class PlainAgentConfig {
                 toolRegistry);
         OpenAIReasoning openAIReasoning = new OpenAIReasoning(openAIClient, systemPrompt);
 
-        return new PlainJavaAgent(openAIReasoning, agentConfigProperties.getMaxReasoningSteps(), toolRegistry);
+        return new PlainJavaAgent(openAIReasoning, agentConfigProperties.getMaxReasoningSteps(), toolRegistry, memory);
     }
 
 

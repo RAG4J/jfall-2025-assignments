@@ -2,6 +2,7 @@ package org.rag4j.agent;
 
 import org.rag4j.agent.core.Agent;
 import org.rag4j.agent.core.Conversation;
+import org.rag4j.agent.memory.Memory;
 import org.rag4j.agent.reasoning.Reasoning;
 import org.rag4j.agent.tools.AgentAction;
 import org.rag4j.agent.tools.ToolRegistry;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,16 +21,23 @@ import static org.rag4j.agent.core.Sender.OBSERVATION;
 /**
  * Plain java agent that makes use of OpenAI for reasoning.
  */
-public record PlainJavaAgent(Reasoning reasoning, int maxReasoningSteps, ToolRegistry toolRegistry) implements Agent {
+public record PlainJavaAgent(Reasoning reasoning, int maxReasoningSteps, ToolRegistry toolRegistry, Memory memory) implements Agent {
     private static final Logger logger = LoggerFactory.getLogger(PlainJavaAgent.class);
+
+    public PlainJavaAgent(Reasoning reasoning, int maxReasoningSteps, Memory memory) {
+        this(reasoning, maxReasoningSteps, new ToolRegistry(List.of()), memory);
+    }
+
 
     @Override
     public Conversation invoke(String userId, Conversation.Message message) {
 
-        Conversation conversation = new Conversation(new ArrayList<>());
+        Conversation conversation = memory.retrieveConversation(userId);
         Conversation.Message answerMessage = this.callReasoning(message, conversation, 1);
 
         conversation.messages().add(answerMessage);
+
+        memory.storeConversation(userId, conversation);
 
         return conversation;
     }
@@ -42,9 +51,9 @@ public record PlainJavaAgent(Reasoning reasoning, int maxReasoningSteps, ToolReg
 
         // Call the reasoning service to get the response
         Conversation.Message response = reasoning.reason(userMessage, conversation);
-        if (userMessage.sender() != OBSERVATION) {
+//        if (userMessage.sender() != OBSERVATION) {
             conversation.messages().add(userMessage);
-        }
+//        }
         logger.debug("Received response: {}", response.content());
 
         // Log thinking and extract answer or action

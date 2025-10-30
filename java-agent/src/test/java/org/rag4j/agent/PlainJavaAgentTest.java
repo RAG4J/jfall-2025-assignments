@@ -30,7 +30,7 @@ class PlainJavaAgentTest {
         Conversation.Message assistantMessage = new Conversation.Message("Answer: Hi!", ASSISTANT);
         when(reasoning.reason(any(Conversation.Message.class), any(Conversation.class))).thenReturn(assistantMessage);
 
-        PlainJavaAgent agent = new PlainJavaAgent(reasoning, 5, toolRegistry);
+        PlainJavaAgent agent = new PlainJavaAgent(reasoning, 5, toolRegistry, memory);
         Conversation.Message userMessage = new Conversation.Message("Hello", USER);
         Conversation result = agent.invoke(userId, userMessage);
 
@@ -47,7 +47,7 @@ class PlainJavaAgentTest {
         ToolRegistry toolRegistry = mock(ToolRegistry.class);
         Reasoning reasoning = mock(Reasoning.class);
         Memory memory = mock(Memory.class);
-        PlainJavaAgent agent = new PlainJavaAgent(reasoning, 5, toolRegistry);
+        PlainJavaAgent agent = new PlainJavaAgent(reasoning, 5, toolRegistry, memory);
         String userId = "user2";
         Conversation.Message userMessage = new Conversation.Message("What?", USER);
         Conversation conversation = new Conversation(new java.util.ArrayList<>());
@@ -83,7 +83,7 @@ class PlainJavaAgentTest {
                 .doReturn(answerMessage)
                 .when(reasoning).reason(any(), eq(conversation));
 
-        PlainJavaAgent agent = spy(new PlainJavaAgent(reasoning, 5, toolRegistry));
+        PlainJavaAgent agent = spy(new PlainJavaAgent(reasoning, 5, toolRegistry, memory));
         Conversation.Message userMessage = new Conversation.Message("Get talk by name called AI Agent", USER);
         Conversation result = agent.invoke(userId, userMessage);
         assertEquals(2, result.messages().size());
