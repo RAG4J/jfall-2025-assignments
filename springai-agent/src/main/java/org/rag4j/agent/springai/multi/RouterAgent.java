@@ -2,6 +2,7 @@ package org.rag4j.agent.springai.multi;
 
 import org.rag4j.agent.core.Agent;
 import org.rag4j.agent.core.Conversation;
+import org.rag4j.agent.springai.advisor.PromptInjectionGuardAdvisor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
@@ -27,9 +28,10 @@ public record RouterAgent(ChatClient chatClient, AgentRegistry agentRegistry) im
                     "reasoning": "Brief explanation of why this question should be routed to a specific agent.",
                     "selection": "The chosen agent"
                 \\}
-                """, agentRegistry.getAvailableAgents());
+                """, agentRegistry.getAvailableAgents(userId));
 
         RoutingResponse routingResponse = this.chatClient.prompt()
+                .advisors(new PromptInjectionGuardAdvisor())
                 .system(selectorPrompt)
                 .user(userMessage.content())
                 .call()
@@ -38,12 +40,17 @@ public record RouterAgent(ChatClient chatClient, AgentRegistry agentRegistry) im
         logger.info("Router reasoning = {}", routingResponse.reasoning);
         logger.info("Chosen selection = {}", routingResponse.selection);
         if (routingResponse.selection == null || routingResponse.selection.isEmpty() || routingResponse.selection.equals("UNKNOWN")) {
-            String answer = "Unfortunately I am not able to answer your question. I can only answer questions about conference talks or SciFi subjects.";
+            String answer = "Unfortunately I am not able to answer your question. I can only answer questions about " +
+                    "conference talks or SciFi subjects.";
             return new Conversation(List.of(userMessage, new Conversation.Message(answer, ASSISTANT)));
+        } else if (routingResponse.selection().equals("BLOCKED")) {
+            return new Conversation(List.of(userMessage, new Conversation.Message(routingResponse.reasoning, ASSISTANT)));
+
         } else {
             return agentRegistry.getAgent(routingResponse.selection).invoke(userId, userMessage);
         }
     }
 
-    record RoutingResponse(String reasoning, String selection) {}
+    record RoutingResponse(String reasoning, String selection) {
+    }
 }

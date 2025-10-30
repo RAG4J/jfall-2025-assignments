@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import org.rag4j.agent.core.Conversation;
 import org.rag4j.agent.core.Sender;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.api.Advisor;
 
 import java.util.Set;
 
@@ -20,9 +21,9 @@ class RouterAgentTest {
         //Given
         ChatClient chatClient = mock(ChatClient.class, RETURNS_DEEP_STUBS);
         RouterAgent.RoutingResponse routingResponse = new RouterAgent.RoutingResponse("No agent matches", "UNKNOWN");
-        when(chatClient.prompt().system(anyString()).user(anyString()).call().entity(RouterAgent.RoutingResponse.class)).thenReturn(routingResponse);
+        when(chatClient.prompt().advisors(any(Advisor[].class)).system(anyString()).user(anyString()).call().entity(RouterAgent.RoutingResponse.class)).thenReturn(routingResponse);
         AgentRegistry agentRegistry = mock(AgentRegistry.class);
-        when(agentRegistry.getAvailableAgents()).thenReturn(Set.of("TalksAgent", "SciFiAgent"));
+        when(agentRegistry.getAvailableAgents(anyString())).thenReturn(Set.of("TalksAgent", "SciFiAgent"));
 
         // When
         RouterAgent agent = new RouterAgent(chatClient, agentRegistry);
@@ -42,12 +43,12 @@ class RouterAgentTest {
         // Given
         ChatClient chatClient = mock(ChatClient.class, RETURNS_DEEP_STUBS);
         RouterAgent.RoutingResponse routingResponse = new RouterAgent.RoutingResponse("SciFiAgent is best", "SciFiAgent");
-        when(chatClient.prompt().system(anyString()).user(anyString()).call().entity(RouterAgent.RoutingResponse.class)).thenReturn(routingResponse);
+        when(chatClient.prompt().advisors(any(Advisor[].class)).system(anyString()).user(anyString()).call().entity(RouterAgent.RoutingResponse.class)).thenReturn(routingResponse);
 
         AgentRegistry agentRegistry = mock(AgentRegistry.class);
         SciFiAgent sciFiAgent = mock(SciFiAgent.class);
         Conversation conversation = mock(Conversation.class);
-        when(agentRegistry.getAvailableAgents()).thenReturn(Set.of("TalksAgent", "SciFiAgent"));
+        when(agentRegistry.getAvailableAgents(anyString())).thenReturn(Set.of("TalksAgent", "SciFiAgent"));
         when(agentRegistry.getAgent("SciFiAgent")).thenReturn(sciFiAgent);
         when(sciFiAgent.invoke(anyString(), any(Conversation.Message.class))).thenReturn(conversation);
 
