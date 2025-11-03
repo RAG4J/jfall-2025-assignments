@@ -6,7 +6,8 @@ public record ConferenceTalk(
         String title,
         String description,
         String track,
-        String level,
+        String room,
+        String time,
         List<Speaker> speakers
 ) {
 }

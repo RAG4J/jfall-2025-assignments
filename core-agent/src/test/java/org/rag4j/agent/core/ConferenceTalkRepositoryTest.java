@@ -11,7 +11,7 @@ class ConferenceTalkRepositoryTest {
     void testParseTalksFromJson_returnsCorrectAmount() throws IOException {
         List<ConferenceTalk> talks = ConferenceTalksRepository.parseTalksFromJson();
         assertNotNull(talks, "Talks list should not be null");
-        assertEquals(189, talks.size(), "There should be 189 ConferenceTalk objects read from talks.json");
+        assertEquals(63, talks.size(), "There should be 189 ConferenceTalk objects read from talks.json");
     }
 
     @Test
@@ -26,18 +26,18 @@ class ConferenceTalkRepositoryTest {
     @Test
     void testFindTalksByAuthor_returnsCorrectTalks() {
         ConferenceTalksRepository parser = new ConferenceTalksRepository();
-        List<ConferenceTalk> talks = parser.findTalksBySpeaker("Simon Ritter");
+        List<ConferenceTalk> talks = parser.findTalksBySpeaker("Jettro Coenradie");
         assertNotNull(talks);
-        assertTrue(talks.stream().anyMatch(t -> t.speakers().stream().anyMatch(s -> s.name().equalsIgnoreCase("Simon Ritter"))),
+        assertTrue(talks.stream().anyMatch(t -> t.speakers().stream().anyMatch(s -> s.name().equalsIgnoreCase("Jettro Coenradie"))),
             "Should find talks with 'Simon Ritter' as a speaker");
     }
 
     @Test
     void testFindTalksByAuthor_returnsCorrectTalks_second_speaker() {
         ConferenceTalksRepository parser = new ConferenceTalksRepository();
-        List<ConferenceTalk> talks = parser.findTalksBySpeaker("Daniël Spee");
+        List<ConferenceTalk> talks = parser.findTalksBySpeaker("Daniel Spee");
         assertNotNull(talks);
-        assertTrue(talks.stream().anyMatch(t -> t.speakers().stream().anyMatch(s -> s.name().equalsIgnoreCase("Daniël Spee"))),
-                "Should find talks with 'Daniël Spee' as a speaker");
+        assertTrue(talks.stream().anyMatch(t -> t.speakers().stream().anyMatch(s -> s.name().equalsIgnoreCase("Daniel Spee"))),
+                "Should find talks with 'Daniel Spee' as a speaker");
     }
 }

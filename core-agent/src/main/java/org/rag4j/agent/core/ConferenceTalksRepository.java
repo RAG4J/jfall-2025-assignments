@@ -49,12 +49,13 @@ public class ConferenceTalksRepository {
                 String title = node.path("title").asText();
                 String description = node.path("description").asText();
                 String track = node.path("track").asText();
-                String level = node.path("level").asText();
+                String room = node.path("room").asText();
+                String time = node.path("time").asText();
                 List<Speaker> speakers = new ArrayList<>();
                 for (JsonNode speakerNode : node.path("speakers")) {
                     speakers.add(new Speaker(speakerNode.asText()));
                 }
-                talks.add(new ConferenceTalk(title, description, track, level, speakers));
+                talks.add(new ConferenceTalk(title, description, track, room, time, speakers));
             }
         }
         return talks;
