@@ -11,10 +11,10 @@ openai:
     url:
     token:
     password: ${WORKSHOP_PASSWORD:}
+    user-id: workshop-default
     cache:
       enabled: true
       location: ${user.dir}/data/token-cache.json
-      user-id: workshop-default
 
 logging:
   level:

@@ -24,7 +24,7 @@ public class EnvironmentAwareTokenConfigResolver implements TokenConfigResolver 
             @Value("${openai.proxy.url}") String proxyUrl,
             @Value("${openai.proxy.token:#{null}}") Optional<String> token,
             @Value("${openai.proxy.password:#{null}}") Optional<String> password,
-            @Value("${openai.proxy.cache.user-id:workshop-default}") String userId
+            @Value("${openai.proxy.user-id:workshop-default}") String userId
     ) {
         this.configuredProxyUrl = proxyUrl;
         this.configuredToken = token;
