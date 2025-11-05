@@ -6,7 +6,7 @@ If you followed along with step 1, you already have the OpenAI API key configure
 First we need to enable the Spring AI agent. This is done by changing the active profile in application.yml to 'springai'.
 
 ```
-> In the pom.xml of the web project, add the dependency to the springai-agent module. You can disable the dependency to the java-agent module by commenting it out.
+> In the pom.xml of the web project, uncomment the dependency to the springai-agent module. You can comment the dependency to the java-agent module by commenting it out.
 > Change the active profile in application.yml to 'springai'
 > Restart the application
 > Ask a question about one of the speakers of the conference.
@@ -31,6 +31,7 @@ Next, you are adding the tools to the TalksAgent.
 > In the TalksAgent class, add the ConferenceTalksTools bean to the constructor.
 > Inject the ConferenceTalksTools into the TalksAgent.
   - Tip: The ConferenceTalksTools is already a Spring Bean as it is configured in the configuration class SpringAIConfigCommon.
+> Fix the compile errors in SpringAIAgentConfig, TalksAgentTest and SpringMultiAgentConfig.
 > In the method `doInvoke`, add the injected conferenceTalksTools to the chatClient.
   - Tip: The fluent interface of the chatClient has a method `tools` to add the tools.
 > Restart the application
@@ -104,3 +105,4 @@ Science Fiction is your only expertise, so you can not answer questions related 
 If the question is about a non-scifi topic, just say you don't know anything about that subject.
 ```
 
+Have some fun, ask a question about one of the speakers. Next ask a question about a SciFi character. Now ask about the result of combining these two characters. The agent should remember the previous questions and be able to answer this combined question. This is due to the shared memory between the agents.
