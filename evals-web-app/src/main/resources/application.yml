@@ -1,4 +1,12 @@
 spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.ai.model.openai.autoconfigure.OpenAiAudioSpeechAutoConfiguration
+      - org.springframework.ai.model.openai.autoconfigure.OpenAiAudioTranscriptionAutoConfiguration
+      - org.springframework.ai.model.openai.autoconfigure.OpenAiEmbeddingAutoConfiguration
+      - org.springframework.ai.model.openai.autoconfigure.OpenAiModerationAutoConfiguration
+      - org.springframework.ai.model.openai.autoconfigure.OpenAiImageAutoConfiguration
+
   profiles:
     active:
     default: springai
@@ -34,6 +42,11 @@ openai:
   proxy:
     url:
     token:
+    password: ${WORKSHOP_PASSWORD:}
+    user-id: workshop-default
+    cache:
+      enabled: true
+      location: ${user.dir}/data/token-cache.json
 
 
 # Custom application properties

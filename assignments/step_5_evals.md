@@ -10,9 +10,10 @@ Two accuracies are calculated:
 - LLM accuracy: How accurate are the evaluations by the llm compared to the human evaluations
 
 ```text
-> Copy the two properties from the application.yml file in the web-app to the evals-web-app application.yml file:
+> Copy the three properties from the application.yml file in the web-app to the evals-web-app application.yml file:
 - openai.proxy.url
-- openai.proxy.token
+- openai.proxy.password
+- openai.proxy.user-id
 ```
 
 To run the application, use the following command:

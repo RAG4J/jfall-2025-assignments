@@ -21,6 +21,11 @@
 
         <dependency>
             <groupId>org.rag4j</groupId>
+            <artifactId>llm-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.rag4j</groupId>
             <artifactId>springai-agent</artifactId>
             <scope>runtime</scope>
         </dependency>
