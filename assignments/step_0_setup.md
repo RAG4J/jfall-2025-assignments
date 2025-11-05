@@ -2,8 +2,7 @@
 The result of this step is a running web application with a dummy agent. You can test the application through the chat page.
 
 ```bash
-./mvnw clean install -DskipTests
-./mvnw clean install -pl web-app
+./mvnw clean install
 ./mvnw spring-boot:run -pl web-app
 ```
 
@@ -63,10 +62,10 @@ java -version
 echo $JAVA_HOME
 
 # Set JAVA_HOME (macOS example)
-export JAVA_HOME=$(/usr/libexec/java_home -v 17)
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 
 # Add to your shell profile (.zshrc, .bashrc, etc.)
-echo 'export JAVA_HOME=$(/usr/libexec/java_home -v 17)' >> ~/.zshrc
+echo 'export JAVA_HOME=$(/usr/libexec/java_home -v 21)' >> ~/.zshrc
 ```
 
 ### 2. Port Already in Use

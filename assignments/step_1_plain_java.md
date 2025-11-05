@@ -16,16 +16,28 @@ In the steps below, you connect the Agent to OpenAI. You can use your own OpenAI
 
 ```
 > Add the Java agent to the dependencies of the web project
-> Uncomment in pom.xml
+  - Uncomment java-agent dependency in the pom.xml from the web-app module
 > Change the active profile in application.yml to 'plain'
-> Expose an Environment variable OPENAI_API_KEY, or use the proxy
-> For the proxy: Uncomment 'openai.proxy.url' property
+  - The application.yml file is in the resources folder of the web-app module
+> Choose how to connect to OpenAI: Your own OpenAI key, or use our proxy
+YOUR OWN OPENAI key:
+  - Expose an Environment variable OPENAI_API_KEY with a valid OpenAI key
+OUR PROXY:
+> Uncomment 'openai.proxy.url' property in application.yml and remove the empty url line.
+> Enter the provided password in the 'openai.proxy.password' property in application.yml
+> Enter a unique name in the 'openai.proxy.user-id' property in application.yml
+> If desired, change path for cached token in the 'openai.proxy.cache.location' property in application.yml
 > Restart the application
-When using the proxy:
-> Open the tokens page. If no valid token is presented, request a new token. You need a password to fetch the token. Ask the instructor for the password.
-> After receiving a new token, copy the value to the 'openai.proxy.token' property in the application.yml file.
-> Restart the application and check the token page to see if it worked.
+> Check the logs for messages similar to these. You should also have a file created with the cached token.
 ```
+
+```text
+2025-11-05T11:35:46.375+01:00  INFO 77755 --- [agent-workshop-assignments] [           main] org.rag4j.webapp.tokens.TokenService     : Attempting to auto-fetch token using configured password
+2025-11-05T11:35:48.073+01:00  INFO 77755 --- [agent-workshop-assignments] [           main] org.rag4j.webapp.tokens.TokenService     : Successfully auto-fetched token for user: workshop-default
+
+```
+
+
 This is the token page with a configured proxy URL and token.
 ![Token page](./images/screenshot-token-page.jpg)
 
@@ -51,7 +63,9 @@ The agent uses a ToolsRegistry object to find the tools it can use. The ToolsReg
 > Find the bean definition for the ToolsRegistry in the file PlainAgentConfigCommon.java
 > Add new instances of the classes FindTalksByTitle and FindTalksBySpeaker to the ToolsRegistry
   - Tip: The constructors of these classes need a ConferenceTalksRepository.
-> Restart the application
+> Restart the application and check the logs to see if the tools are registered correctly.
+  - You should see this log message: Tool registry initialized with 2 tools.
+  - Two additional log messages should show the registered tools
 > Open the chat page and ask the same question again, now you should get an answer with some talks.
 ```
 
@@ -73,17 +87,37 @@ To help the Agent create a better context for the LLM, we can add memory. The me
   - Tip: The class PlainJavaAgent is used to create a bean in the PlainAgentConfig.java file
   - Tip: There is a PlainMultiAgent class and some unit tests that need to be fixed as well.
 > Add the question and the answer to the memory in the PlainJavaAgent class.
-> In some situations, you might want to add Tool outputs to the memory as well.
-> Add the Tool outputs to the memory in the PlainJavaAgent class (executeAction method).
+  - Tip: The memory works with conversations, you can read and store the conversation.
+> Before you call reasoning, read the conversation from the memory and provide it to the reasoning process.
+  - Tip: At the moment, a new conversation is created for each reasoning call. You want to replace this.
+> Restart the application and ask the same two questions again.
+> Check the logs to see if the memory is used in the prompt sent to OpenAI.
+  - Notice that the LLM needs to do the call again to answer the question about another speaker. Why?
+```
+
+In some situations, you might want to add Tool outputs to the memory as well. If you add the tool output, this gives the LLM more context about what the tools returned. Even the next time you call the LLM, it has more context about what the tools returned in previous calls.
+
+```
+> Add the Tool outputs to the memory in the PlainJavaAgent class (callReasoning method).
   - Tip: Note the If statement that prevents Observations from being added to the memory.
 > Restart the application if needed, ask the same questions from the previous assignment again.
 > Check the logs to see if the memory is used in the prompt sent to OpenAI.
+> Notice that the observations are now part of the memory.
+  - Notice from the logs that the tools are often still called, even when the information is already in the memory.
 ```
 
-## Create a multi-agent setup
+## Create a multi-agent setup (OPTIONAL)
 Now that you have a working agent, it is time to create a multi-agent setup. You make the second agent that only answers questions about Science Fiction. The agent should respond with "I don't know" if the question is not about Science Fiction.
 
 In this assignment, you will implement the Orchestrator pattern for a multi-agent setup. The config file SpringAiMultiAgentConfig.java is already provided for you with the orchestrator agent. You will configure the two other agents. To keep things simple, we will use the exact implementation for the SciFi agent as for the Conference agent. The only difference is that the SciFi agent has no tools. The orchestrator agent receives the available agents as tools and asks the questions to the correct agent.
+
+You are free to write you own prompt, but if you want to use the provided prompt, here it is:
+
+```text
+You are an AI agent that answers questions about SciFi characters and movies. 
+Do not answers questions about other genres. If you don't know the answer, just say you don't know.
+Do not try to make up an answer.
+```
 
 ```
 > Switch the active profile to 'plain-multi' in the application.yml file
@@ -92,7 +126,7 @@ In this assignment, you will implement the Orchestrator pattern for a multi-agen
   - Remember to provide the memory to the agents.
   - The SciFiAgent needs no tools; the prompt should limit the agent to answering only questions about Science Fiction.
 > Restart the application
-> Open the chat page and ask a question about Science Fiction, for example: Who is considered the most famous science fiction character?
+> Open the chat page and ask a question about Science Fiction, for example: From what mofie is Darth Vader?
 > Check the logs to see if the orchestrator agent asks the question to the SciFi agent.
 > Ask a question about the conference, for example: Is there a talk from jettro?
 > Check the logs to see if the orchestrator agent asks the question to the Talks agent.
