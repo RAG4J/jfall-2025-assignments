@@ -19,12 +19,13 @@
         <module>auth-server</module>
         <module>core-agent</module>
         <module>embabel-agent</module>
-        <module>java-agent</module>
-        <module>springai-agent</module>
-        <module>web-app</module>
         <module>evals-web-app</module>
         <module>favourites-mcp</module>
         <module>favourites-mcp-remote</module>
+        <module>java-agent</module>
+        <module>llm-client</module>
+        <module>springai-agent</module>
+        <module>web-app</module>
     </modules>
 
     <properties>
@@ -43,6 +44,11 @@
             <dependency>
                 <groupId>org.rag4j</groupId>
                 <artifactId>core-agent</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.rag4j</groupId>
+                <artifactId>llm-client</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

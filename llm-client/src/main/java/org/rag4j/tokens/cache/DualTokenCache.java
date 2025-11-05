@@ -1,8 +1,8 @@
-package org.rag4j.webapp.tokens.cache;
+package org.rag4j.tokens.cache;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.rag4j.webapp.tokens.TokenCache;
+import org.rag4j.tokens.TokenCache;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

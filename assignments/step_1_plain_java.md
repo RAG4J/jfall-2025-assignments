@@ -32,8 +32,8 @@ OUR PROXY:
 ```
 
 ```text
-2025-11-05T11:35:46.375+01:00  INFO 77755 --- [agent-workshop-assignments] [           main] org.rag4j.webapp.tokens.TokenService     : Attempting to auto-fetch token using configured password
-2025-11-05T11:35:48.073+01:00  INFO 77755 --- [agent-workshop-assignments] [           main] org.rag4j.webapp.tokens.TokenService     : Successfully auto-fetched token for user: workshop-default
+2025-11-05T11:35:46.375+01:00  INFO 77755 --- [agent-workshop-assignments] [           main] org.rag4j.tokens.TokenService     : Attempting to auto-fetch token using configured password
+2025-11-05T11:35:48.073+01:00  INFO 77755 --- [agent-workshop-assignments] [           main] org.rag4j.tokens.TokenService     : Successfully auto-fetched token for user: workshop-default
 
 ```
 

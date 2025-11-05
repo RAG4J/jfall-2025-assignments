@@ -2,11 +2,11 @@ package org.rag4j.webapp;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.rag4j.tokens.TokenService;
 import org.rag4j.webapp.config.ConfigurationMismatchHandler;
-import org.rag4j.webapp.tokens.model.TokenCreationResult;
-import org.rag4j.webapp.tokens.model.TokenStatus;
-import org.rag4j.webapp.tokens.model.TokenValidationResult;
-import org.rag4j.webapp.tokens.TokenService;
+import org.rag4j.tokens.model.TokenCreationResult;
+import org.rag4j.tokens.model.TokenStatus;
+import org.rag4j.tokens.model.TokenValidationResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +24,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 import static org.springframework.web.util.HtmlUtils.htmlEscape;
 

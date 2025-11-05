@@ -1,11 +1,11 @@
-package org.rag4j.webapp.tokens;
+package org.rag4j.tokens;
 
 import jakarta.annotation.PostConstruct;
-import org.rag4j.webapp.tokens.model.TokenStatus;
-import org.rag4j.webapp.tokens.model.TokenValidationResult;
-import org.rag4j.webapp.tokens.TokenCache.CachedToken;
-import org.rag4j.webapp.tokens.TokenClient.TokenCreationResponse;
-import org.rag4j.webapp.tokens.TokenClient.TokenValidationResponse;
+import org.rag4j.tokens.model.TokenStatus;
+import org.rag4j.tokens.model.TokenValidationResult;
+import org.rag4j.tokens.TokenCache.CachedToken;
+import org.rag4j.tokens.TokenClient.TokenCreationResponse;
+import org.rag4j.tokens.TokenClient.TokenValidationResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

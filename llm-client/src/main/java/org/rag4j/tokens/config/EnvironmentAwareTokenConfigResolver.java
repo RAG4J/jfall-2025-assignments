@@ -1,6 +1,6 @@
-package org.rag4j.webapp.tokens.config;
+package org.rag4j.tokens.config;
 
-import org.rag4j.webapp.tokens.TokenConfigResolver;
+import org.rag4j.tokens.TokenConfigResolver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

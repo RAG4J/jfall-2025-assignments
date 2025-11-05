@@ -3,12 +3,10 @@ package org.rag4j.webapp;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.rag4j.tokens.TokenService;
 import org.rag4j.webapp.config.ConfigurationMismatchHandler;
-import org.rag4j.webapp.tokens.model.TokenStatus;
-import org.rag4j.webapp.tokens.TokenService;
+import org.rag4j.tokens.model.TokenStatus;
 import org.springframework.ui.Model;
-
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

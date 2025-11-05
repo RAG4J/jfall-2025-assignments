@@ -1,4 +1,4 @@
-package org.rag4j.webapp.tokens;
+package org.rag4j.tokens;
 
 import java.util.Optional;
 

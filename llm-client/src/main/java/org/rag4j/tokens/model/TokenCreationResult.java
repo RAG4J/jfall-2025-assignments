@@ -1,4 +1,4 @@
-package org.rag4j.webapp.tokens.model;
+package org.rag4j.tokens.model;
 
 public class TokenCreationResult {
     private final boolean success;

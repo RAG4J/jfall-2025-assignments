@@ -1,4 +1,4 @@
-package org.rag4j.webapp.tokens;
+package org.rag4j.tokens;
 
 import org.rag4j.agent.core.TokenProvider;
 import org.springframework.stereotype.Component;

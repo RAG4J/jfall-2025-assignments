@@ -1,8 +1,8 @@
-package org.rag4j.webapp.tokens.client;
+package org.rag4j.tokens.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.rag4j.webapp.tokens.TokenClient;
+import org.rag4j.tokens.TokenClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;

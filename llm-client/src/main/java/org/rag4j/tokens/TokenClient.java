@@ -1,4 +1,4 @@
-package org.rag4j.webapp.tokens;
+package org.rag4j.tokens;
 
 /**
  * Client interface for communicating with the token proxy API.
