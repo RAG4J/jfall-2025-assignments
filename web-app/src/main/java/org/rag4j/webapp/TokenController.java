@@ -3,12 +3,15 @@ package org.rag4j.webapp;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.rag4j.webapp.config.ConfigurationMismatchHandler;
+import org.rag4j.webapp.tokens.model.TokenCreationResult;
+import org.rag4j.webapp.tokens.model.TokenStatus;
+import org.rag4j.webapp.tokens.model.TokenValidationResult;
+import org.rag4j.webapp.tokens.TokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -29,18 +32,18 @@ import static org.springframework.web.util.HtmlUtils.htmlEscape;
 public class TokenController {
     private static final Logger logger = LoggerFactory.getLogger(TokenController.class);
     private final String openAIProxyUrl;
-    private final Optional<String> openAIProxyToken;
     private final ConfigurationMismatchHandler mismatchHandler;
+    private final TokenService tokenService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     public TokenController(
             @Value("${openai.proxy.url}") String openAIProxyUrl,
-            @Value("${openai.proxy.token:#{null}}") Optional<String> openAIProxyToken,
-            ConfigurationMismatchHandler mismatchHandler
+            ConfigurationMismatchHandler mismatchHandler,
+            TokenService tokenService
     ) {
         this.openAIProxyUrl = openAIProxyUrl;
-        this.openAIProxyToken = openAIProxyToken;
         this.mismatchHandler = mismatchHandler;
+        this.tokenService = tokenService;
     }
 
     @GetMapping("/token")
@@ -48,7 +51,7 @@ public class TokenController {
             Model model, 
             @RequestParam(value = "configError", required = false) String configError) {
         
-        // Check for configuration mismatch error
+        // Check for configuration mismatch error between env var and application.yml
         if ("true".equals(configError) && mismatchHandler.hasConfigurationMismatch()) {
             String errorMessage = mismatchHandler.getConfigurationMismatchError();
             model.addAttribute("error", "⚠️ Configuration Mismatch Detected: " + errorMessage);
@@ -63,18 +66,89 @@ public class TokenController {
             mismatchHandler.clearConfigurationMismatchError();
         }
         
-        // Check if we have a token and validate it
-        if (openAIProxyToken.isPresent() && !openAIProxyToken.get().trim().isEmpty()) {
-            TokenValidationResult validation = validateExistingToken();
-            model.addAttribute("tokenValidation", validation);
-            
-            if (validation.isValid()) {
-                model.addAttribute("success", String.format("Current token is valid for %d more minutes", validation.getMinutesRemaining()));
+        // Check if proxy URL is configured in application.yml
+        boolean proxyInConfig = openAIProxyUrl != null && !openAIProxyUrl.trim().isEmpty();
+        
+        // Check for OPENAI_BASE_URL environment variable (proxy via env var)
+        String openAIBaseUrl = System.getenv("OPENAI_BASE_URL");
+        boolean proxyInEnvVar = openAIBaseUrl != null && !openAIBaseUrl.trim().isEmpty();
+        
+        String openAIApiKey = System.getenv("OPENAI_API_KEY");
+        boolean hasApiKey = openAIApiKey != null && !openAIApiKey.trim().isEmpty();
+        
+        model.addAttribute("proxyConfigured", proxyInConfig);
+        model.addAttribute("proxyInEnvVar", proxyInEnvVar);
+        
+        // Scenario 1: No proxy at all - guide to use personal OpenAI API key
+        if (!proxyInConfig && !proxyInEnvVar) {
+            if (hasApiKey) {
+                model.addAttribute("success", "✅ Using your own OpenAI API key from OPENAI_API_KEY environment variable.");
+                model.addAttribute("directOpenAIMode", true);
             } else {
-                model.addAttribute("warning", "Current token is invalid or expired. Please request a new token.");
+                model.addAttribute("info", 
+                    "ℹ️ No proxy configured. To use your own OpenAI API key:\n" +
+                    "1. Set the OPENAI_API_KEY environment variable\n" +
+                    "2. Restart the application\n\n" +
+                    "Example (Mac/Linux):\n" +
+                    "export OPENAI_API_KEY='your-api-key-here'\n\n" +
+                    "Example (Windows):\n" +
+                    "set OPENAI_API_KEY=your-api-key-here");
+                model.addAttribute("showEnvVarInstructions", true);
             }
+            return "token";
+        }
+        
+        // Scenario 2: Proxy via OPENAI_BASE_URL + OPENAI_API_KEY (manual token management)
+        if (!proxyInConfig) {
+            model.addAttribute("envVarProxyMode", true);
+            model.addAttribute("proxyUrl", openAIBaseUrl);
+            
+            if (hasApiKey) {
+                // Validate the token from OPENAI_API_KEY
+                TokenValidationResult validation = tokenService.validateToken(openAIApiKey);
+                
+                if (validation.isValid()) {
+                    model.addAttribute("success", 
+                        String.format("✅ Using proxy token from OPENAI_API_KEY environment variable. Valid for %d more minutes.", 
+                        validation.getMinutesRemaining()));
+                    model.addAttribute("tokenInfo", validation);
+                } else {
+                    model.addAttribute("warning", 
+                        "⚠️ Token in OPENAI_API_KEY is invalid or expired. To get a new token:\n" +
+                        "1. Use the form below to request a new token\n" +
+                        "2. Copy the generated token\n" +
+                        "3. Update your OPENAI_API_KEY environment variable:\n" +
+                        "   export OPENAI_API_KEY='new-token-here'\n" +
+                        "4. Restart the application");
+                    model.addAttribute("tokenExpired", true);
+                }
+            } else {
+                model.addAttribute("error", 
+                    "❌ OPENAI_BASE_URL is set but OPENAI_API_KEY is missing.\n" +
+                    "Use the form below to request a token, then set:\n" +
+                    "export OPENAI_API_KEY='your-token-here'");
+            }
+            return "token";
+        }
+        
+        // Scenario 3: Proxy in application.yml with auto-managed tokens
+        TokenStatus status = tokenService.getTokenStatus();
+        model.addAttribute("tokenStatus", status);
+        model.addAttribute("cacheEnabled", true);
+        model.addAttribute("configProxyMode", true);
+        
+        if (status.isValid()) {
+            model.addAttribute("success", String.format("✅ Auto-managed token is valid for %d more minutes (user: %s)", 
+                status.getMinutesRemaining(), status.getUserId()));
+            model.addAttribute("autoManaged", true);
         } else {
-            model.addAttribute("info", "No token configured. Please request a token below.");
+            if (status.getErrorMessage() != null) {
+                if (status.getErrorMessage().equals("Token expired")) {
+                    model.addAttribute("warning", "⚠️ Cached token expired. Will auto-refresh on next request if password is configured.");
+                } else {
+                    model.addAttribute("info", "ℹ️ " + status.getErrorMessage() + " - You can manually request a token below or configure a password for auto-fetch.");
+                }
+            }
         }
         return "token";
     }
@@ -84,6 +158,20 @@ public class TokenController {
             @Validated @RequestParam("userId") String userId,
             @RequestParam("password") String password,
             Model model) {
+        
+        // Determine which proxy URL to use (config takes precedence over env var)
+        String effectiveProxyUrl = openAIProxyUrl;
+        if (effectiveProxyUrl == null || effectiveProxyUrl.trim().isEmpty()) {
+            String openAIBaseUrl = System.getenv("OPENAI_BASE_URL");
+            if (openAIBaseUrl != null && !openAIBaseUrl.trim().isEmpty()) {
+                effectiveProxyUrl = openAIBaseUrl;
+                model.addAttribute("envVarProxyMode", true);
+            } else {
+                model.addAttribute("error", "❌ Token fetching is not available. No proxy URL is configured. Please use OPENAI_API_KEY environment variable instead.");
+                model.addAttribute("showEnvVarInstructions", true);
+                return "token";
+            }
+        }
         
         if (userId == null || userId.trim().isEmpty()) {
             model.addAttribute("error", "You need to provide a username.");
@@ -101,56 +189,52 @@ public class TokenController {
         logger.info("Received token request for userId: {}", sanitizedUserId);
 
         // Fetch the token for the provided userId with password
-        TokenCreationResult result = fetchTokenForUser(sanitizedUserId, password);
+        TokenCreationResult result = fetchTokenForUser(effectiveProxyUrl, sanitizedUserId, password);
         
         if (result.isSuccess()) {
-            model.addAttribute("confirmation", "Token successfully created! Copy it and add it to application.yml");
-            model.addAttribute("obtainedToken", result.getToken());
-            model.addAttribute("tokenInfo", result);
+            // Check if using env var proxy mode
+            boolean usingEnvVarProxy = (openAIProxyUrl == null || openAIProxyUrl.trim().isEmpty()) && 
+                                       System.getenv("OPENAI_BASE_URL") != null;
+            
+            if (usingEnvVarProxy) {
+                // Manual token management - user needs to set env var
+                model.addAttribute("confirmation", 
+                    "✅ Token successfully created! To use this token:\n" +
+                    "1. Copy the token below\n" +
+                    "2. Update your OPENAI_API_KEY environment variable:\n" +
+                    "   export OPENAI_API_KEY='" + result.getToken() + "'\n" +
+                    "3. Restart the application");
+                model.addAttribute("obtainedToken", result.getToken());
+                model.addAttribute("tokenInfo", result);
+                model.addAttribute("manualTokenMode", true);
+                model.addAttribute("envVarProxyMode", true);
+            } else {
+                // Auto-managed token - store in TokenService
+                tokenService.setToken(result.getToken(), sanitizedUserId);
+                model.addAttribute("confirmation", "✅ Token successfully created and cached! It will be used automatically.");
+                model.addAttribute("obtainedToken", result.getToken());
+                model.addAttribute("tokenInfo", result);
+                model.addAttribute("autoManaged", true);
+                model.addAttribute("configProxyMode", true);
+                
+                // Add current token status to show it's now valid
+                TokenStatus status = tokenService.getTokenStatus();
+                model.addAttribute("tokenStatus", status);
+                model.addAttribute("cacheEnabled", true);
+            }
         } else {
             model.addAttribute("error", result.getErrorMessage());
         }
         
         model.addAttribute("userId", userId);
+        model.addAttribute("proxyConfigured", openAIProxyUrl != null && !openAIProxyUrl.trim().isEmpty());
         return "token";
     }
 
-    private TokenValidationResult validateExistingToken() {
-        if (openAIProxyToken.isEmpty() || openAIProxyToken.get().trim().isEmpty()) {
-            return new TokenValidationResult(false, "No token configured", 0, null, null, null);
-        }
-
+    private TokenCreationResult fetchTokenForUser(String proxyUrl, String userId, String password) {
         try {
             RestTemplate restTemplate = new RestTemplate();
-            String url = this.openAIProxyUrl + "/token/validate";
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.set("Authorization", "Bearer " + openAIProxyToken.get());
-            headers.setContentType(MediaType.APPLICATION_JSON);
-
-            HttpEntity<String> request = new HttpEntity<>(headers);
-            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, request, String.class);
-
-            JsonNode jsonResponse = objectMapper.readTree(response.getBody());
-            
-            return new TokenValidationResult(
-                jsonResponse.get("valid").asBoolean(),
-                null,
-                jsonResponse.get("minutes_remaining").asInt(),
-                jsonResponse.has("user") ? jsonResponse.get("user").asText() : null,
-                jsonResponse.has("description") ? jsonResponse.get("description").asText() : null,
-                jsonResponse.has("expires_at_iso") ? jsonResponse.get("expires_at_iso").asText() : null
-            );
-        } catch (Exception e) {
-            logger.error("Error validating token", e);
-            return new TokenValidationResult(false, "Error validating token: " + e.getMessage(), 0, null, null, null);
-        }
-    }
-
-    private TokenCreationResult fetchTokenForUser(String userId, String password) {
-        try {
-            RestTemplate restTemplate = new RestTemplate();
-            String url = this.openAIProxyUrl + "/token";
+            String url = proxyUrl + "/token";
 
             Map<String, Object> requestBody = new HashMap<>();
             requestBody.put("user", userId);
@@ -181,55 +265,5 @@ public class TokenController {
             logger.error("Error creating token for user: {}", userId, e);
             return new TokenCreationResult(false, "Error creating token: " + e.getMessage(), null, 0, 0);
         }
-    }
-
-    // Data classes for structured responses
-    public static class TokenValidationResult {
-        private final boolean valid;
-        private final String errorMessage;
-        private final int minutesRemaining;
-        private final String user;
-        private final String description;
-        private final String expiresAtIso;
-
-        public TokenValidationResult(boolean valid, String errorMessage, int minutesRemaining, 
-                                   String user, String description, String expiresAtIso) {
-            this.valid = valid;
-            this.errorMessage = errorMessage;
-            this.minutesRemaining = minutesRemaining;
-            this.user = user;
-            this.description = description;
-            this.expiresAtIso = expiresAtIso;
-        }
-
-        public boolean isValid() { return valid; }
-        public String getErrorMessage() { return errorMessage; }
-        public int getMinutesRemaining() { return minutesRemaining; }
-        public String getUser() { return user; }
-        public String getDescription() { return description; }
-        public String getExpiresAtIso() { return expiresAtIso; }
-    }
-
-    public static class TokenCreationResult {
-        private final boolean success;
-        private final String errorMessage;
-        private final String token;
-        private final long expiresAt;
-        private final int expiresInMinutes;
-
-        public TokenCreationResult(boolean success, String errorMessage, String token, 
-                                 long expiresAt, int expiresInMinutes) {
-            this.success = success;
-            this.errorMessage = errorMessage;
-            this.token = token;
-            this.expiresAt = expiresAt;
-            this.expiresInMinutes = expiresInMinutes;
-        }
-
-        public boolean isSuccess() { return success; }
-        public String getErrorMessage() { return errorMessage; }
-        public String getToken() { return token; }
-        public long getExpiresAt() { return expiresAt; }
-        public int getExpiresInMinutes() { return expiresInMinutes; }
     }
 }

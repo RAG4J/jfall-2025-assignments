@@ -1,14 +1,18 @@
 package org.rag4j.agent.springai;
 
 import org.rag4j.agent.core.ConferenceTalksRepository;
+import org.rag4j.agent.core.TokenProvider;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.openai.OpenAiChatOptions;
 import org.springframework.ai.openai.api.OpenAiApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+
+import java.util.Optional;
 
 @Configuration
 @EnableConfigurationProperties({OpenAIConfigProperties.class})
@@ -37,7 +41,10 @@ public class SpringAIConfigCommon {
     }
 
     @Bean
-    public OpenAiApi openAIOkHttpClient(OpenAIConfigProperties props) {
+    public OpenAiApi openAIOkHttpClient(
+            OpenAIConfigProperties props,
+            @Autowired(required = false) TokenProvider tokenProvider) {
+        
         if (props.getUrl() == null || props.getUrl().isEmpty()) {
             var openAIApiKey = System.getenv("OPENAI_API_KEY");
             if (openAIApiKey == null || openAIApiKey.isEmpty()) {
@@ -47,11 +54,28 @@ public class SpringAIConfigCommon {
                     .apiKey(openAIApiKey)
                     .build();
         }
-
-        return OpenAiApi.builder()
-                .baseUrl(props.getUrl() + "/openai")
-                .apiKey(props.getToken())
-                .build();
+        
+        // Priority 1: Use TokenProvider if available (dynamic token management)
+        if (tokenProvider != null) {
+            Optional<String> token = tokenProvider.getCurrentToken();
+            if (token.isPresent()) {
+                return OpenAiApi.builder()
+                        .baseUrl(props.getUrl() + "/openai")
+                        .apiKey(token.get())
+                        .build();
+            }
+        }
+        
+        // Priority 2: Use static token from properties
+        if (props.getToken() != null && !props.getToken().isEmpty()) {
+            return OpenAiApi.builder()
+                    .baseUrl(props.getUrl() + "/openai")
+                    .apiKey(props.getToken())
+                    .build();
+        }
+        
+        throw new IllegalArgumentException("Proxy is configured but no token is available. " +
+                "Either configure openai.proxy.password for auto-fetch or set openai.proxy.token manually.");
     }
 
 }

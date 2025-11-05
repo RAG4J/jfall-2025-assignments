@@ -10,6 +10,11 @@ openai:
 #    url: https://vfjv12h3xb.execute-api.eu-west-1.amazonaws.com
     url:
     token:
+    password: ${WORKSHOP_PASSWORD:}
+    cache:
+      enabled: true
+      location: ${user.dir}/data/token-cache.json
+      user-id: workshop-default
 
 logging:
   level:

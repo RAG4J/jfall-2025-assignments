@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.rag4j.webapp.config.ConfigurationMismatchHandler;
+import org.rag4j.webapp.tokens.model.TokenStatus;
+import org.rag4j.webapp.tokens.TokenService;
 import org.springframework.ui.Model;
 
 import java.util.Optional;
@@ -15,7 +17,11 @@ class TokenControllerTest {
     @DisplayName("homePage adds info when token is missing")
     void homePageAddsInfoWhenTokenIsMissing() {
         ConfigurationMismatchHandler mismatchHandler = Mockito.mock(ConfigurationMismatchHandler.class);
-        TokenController controller = new TokenController("http://proxy", Optional.empty(), mismatchHandler);
+        TokenService tokenService = Mockito.mock(TokenService.class);
+        Mockito.when(tokenService.getTokenStatus()).thenReturn(
+            new TokenStatus(false, null, 0, "No token cached")
+        );
+        TokenController controller = new TokenController("http://proxy", mismatchHandler, tokenService);
         Model model = Mockito.mock(Model.class);
         String view = controller.homePage(model, null);
         Mockito.verify(model).addAttribute(Mockito.eq("info"), Mockito.anyString());
@@ -26,7 +32,11 @@ class TokenControllerTest {
     @DisplayName("homePage does not add error when token is present")
     void homePageDoesNotAddErrorWhenTokenIsPresent() {
         ConfigurationMismatchHandler mismatchHandler = Mockito.mock(ConfigurationMismatchHandler.class);
-        TokenController controller = new TokenController("http://proxy", Optional.of("sometoken"), mismatchHandler);
+        TokenService tokenService = Mockito.mock(TokenService.class);
+        Mockito.when(tokenService.getTokenStatus()).thenReturn(
+            new TokenStatus(true, "test-user", 60, null)
+        );
+        TokenController controller = new TokenController("http://proxy", mismatchHandler, tokenService);
         Model model = Mockito.mock(Model.class);
         String view = controller.homePage(model, null);
         Mockito.verify(model, Mockito.never()).addAttribute(Mockito.eq("error"), Mockito.any());
@@ -37,7 +47,8 @@ class TokenControllerTest {
     @DisplayName("handleFetchToken returns error when userId is null")
     void handleFetchTokenReturnsErrorWhenUserIdIsNull() {
         ConfigurationMismatchHandler mismatchHandler = Mockito.mock(ConfigurationMismatchHandler.class);
-        TokenController controller = new TokenController("http://proxy", Optional.of("sometoken"), mismatchHandler);
+        TokenService tokenService = Mockito.mock(TokenService.class);
+        TokenController controller = new TokenController("http://proxy", mismatchHandler, tokenService);
         Model model = Mockito.mock(Model.class);
         String view = controller.handleFetchToken(null, "password", model);
         Mockito.verify(model).addAttribute("error", "You need to provide a username.");
@@ -48,7 +59,8 @@ class TokenControllerTest {
     @DisplayName("handleFetchToken returns error when userId is empty")
     void handleFetchTokenReturnsErrorWhenUserIdIsEmpty() {
         ConfigurationMismatchHandler mismatchHandler = Mockito.mock(ConfigurationMismatchHandler.class);
-        TokenController controller = new TokenController("http://proxy", Optional.of("sometoken"), mismatchHandler);
+        TokenService tokenService = Mockito.mock(TokenService.class);
+        TokenController controller = new TokenController("http://proxy", mismatchHandler, tokenService);
         Model model = Mockito.mock(Model.class);
         String view = controller.handleFetchToken("   ", "password", model);
         Mockito.verify(model).addAttribute("error", "You need to provide a username.");
