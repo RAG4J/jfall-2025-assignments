@@ -30,10 +30,11 @@
     <properties>
         <java.version>21</java.version>
         <openai.version>2.20.1</openai.version>
-        <spring-boot.version>3.5.5</spring-boot.version>
-        <spring-ai.version>1.0.1</spring-ai.version>
+        <spring-boot.version>3.5.7</spring-boot.version>
+        <spring-ai.version>1.0.3</spring-ai.version>
         <bootstrap.version>5.3.8</bootstrap.version>
         <embabel-agent.version>0.1.2</embabel-agent.version>
+        <logback.version>1.5.20</logback.version>
     </properties>
 
     <dependencyManagement>
@@ -86,6 +87,18 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.18.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
             </dependency>
         </dependencies>
 
