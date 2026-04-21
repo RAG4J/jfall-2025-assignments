@@ -5,7 +5,7 @@ import org.rag4j.agent.mcp.FavouritesService;
 import org.rag4j.agent.mcp.model.FavouriteTalk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.Arrays;
@@ -16,13 +16,16 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@WebMvcTest(FavouritesController.class)
+@WebMvcTest(controllers = FavouritesController.class, excludeAutoConfiguration = {
+        org.springframework.boot.autoconfigure.security.oauth2.resource.servlet.OAuth2ResourceServerAutoConfiguration.class,
+        org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
+})
 class FavouritesControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @MockitoBean
     private FavouritesService favouritesService;
 
     @Test

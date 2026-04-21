@@ -1,6 +1,18 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+  servlet:
+    session:
+      cookie:
+        same-site: lax
+        secure: false  # Set to true in production with HTTPS
+        http-only: true
+
 spring:
   profiles:
-    active: springai
+    active: springai-multi
   application:
     name: agent-workshop-assignments
   ai:
@@ -8,19 +20,41 @@ spring:
       client:
         enabled: true
         type: SYNC
-        stdio:
+        sse:
           connections:
-            location:
-              command: java
-              args:
-                - -Dspring.ai.mcp.server.stdio=true
-                - -jar
-                - "${FAVOURITES_MCP_JAR:${user.dir}/favourites-mcp/target/favourites-mcp-0.0.1-SNAPSHOT.jar}"
-#        sse:
-#          connections:
-#            favourites:
-#              url: http://localhost:8081
-#              sse-endpoint: /sse
+            location-mcp:
+              url: http://localhost:8081
+              sse-endpoint: /sse
+  autoconfigure:
+    exclude:
+      - org.springframework.ai.mcp.client.autoconfigure.SseWebFluxTransportAutoConfiguration
+  security:
+    oauth2:
+      client:
+        registration:
+          web-app:
+            provider: web-app
+            client-id: web-app-client
+            client-secret: web-secret
+            client-authentication-method: client_secret_basic
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://localhost:8080/login/oauth2/code/web-app"
+            scope: [ openid, profile, email, favourites.read, favourites.write ]
+            client-name: "Agent Web App Client"
+          favourites-mcp:
+            provider: auth-server
+            client-id: favourites-mcp
+            client-secret: mcp-secret
+            authorization-grant-type: client_credentials
+            scope: [ mcp.invoke ]
+            client-name: "Favourites MCP Client"
+        provider:
+          web-app:
+            issuer-uri: http://auth-server:9000
+            user-name-attribute: sub
+          auth-server:
+            token-uri: http://auth-server:9000/oauth2/token
+            user-name-attribute: sub
 
 
 openai:
