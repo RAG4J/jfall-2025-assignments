@@ -3,6 +3,7 @@ package org.rag4j.agent.embabel;
 import com.embabel.agent.api.annotation.AchievesGoal;
 import com.embabel.agent.api.annotation.Action;
 import com.embabel.agent.api.annotation.Agent;
+import com.embabel.agent.api.annotation.ToolGroup;
 import com.embabel.agent.api.common.OperationContext;
 import com.embabel.agent.api.models.OpenAiModels;
 import com.embabel.agent.domain.io.UserInput;
@@ -28,7 +29,8 @@ public record TalksAgent(EmbabelConferenceTools conferenceTools) {
     @AchievesGoal(
             description = "Answers a question about conference talks using tools to obtain the right talks."
     )
-    @Action(toolGroups = "mcp-favourites")
+    @Action()
+    @ToolGroup(role = "mcp-favourites")
     public Conversation answerQuestion(UserId userId, UserInput question, OperationContext context) {
         Conversation response = context.ai().withLlm(OpenAiModels.GPT_41_MINI)
                 .withToolObject(conferenceTools)

@@ -1,6 +1,8 @@
 package org.rag4j.agent.embabel;
 
 import com.embabel.agent.domain.io.UserInput;
+import com.embabel.agent.test.unit.FakeOperationContext;
+import com.embabel.agent.test.unit.FakePromptRunner;
 import org.junit.jupiter.api.Test;
 import org.rag4j.agent.core.Conversation;
 import org.rag4j.agent.core.Sender;
