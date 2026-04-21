@@ -34,7 +34,7 @@
         <spring-boot.version>3.5.7</spring-boot.version>
         <spring-ai.version>1.0.3</spring-ai.version>
         <bootstrap.version>5.3.8</bootstrap.version>
-        <embabel-agent.version>0.1.2</embabel-agent.version>
+        <embabel-agent.version>0.3.5</embabel-agent.version>
         <logback.version>1.5.20</logback.version>
     </properties>
 
@@ -123,22 +123,4 @@
             </plugins>
         </pluginManagement>
     </build>
-
-    <repositories>
-        <repository>
-            <id>central</id>
-            <url>https://repo.maven.apache.org/maven2</url>
-        </repository>
-        <repository>
-            <id>embabel-releases</id>
-            <url>https://repo.embabel.com/artifactory/libs-release</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
 </project>

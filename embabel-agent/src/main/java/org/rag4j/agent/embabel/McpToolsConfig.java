@@ -4,6 +4,7 @@ import com.embabel.agent.core.ToolGroup;
 import com.embabel.agent.core.ToolGroupDescription;
 import com.embabel.agent.core.ToolGroupPermission;
 import com.embabel.agent.tools.mcp.McpToolGroup;
+import com.embabel.agent.tools.mcp.ToolCallContextMcpMetaConverter;
 import io.modelcontextprotocol.client.McpSyncClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,7 +37,8 @@ public class McpToolsConfig {
                 "mcp-favourites",
                 Set.of(ToolGroupPermission.HOST_ACCESS),
                 mcpSyncClients,
-                callback -> callback.getToolDefinition().name().contains("favourite")
+                callback -> callback.getToolDefinition().name().contains("favourite"),
+                ToolCallContextMcpMetaConverter.noOp()
         );
     }
 
